@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "Bcxn+NxUEq3msNG7DnSgayL2BSeTMdHz4FKCm4E9pG+qq1Z0tb0TLYZHxRuKNNV4sYu0j9kGy6yfqb2wBC0d6A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\thapq\\MISA-TRAINING-GĐ2\\GPBL\\backend\\MISA.WEB04.P2.CUKCUK.FOOD\\MISA.WEB04.P2.CUKCUK.FOOD\\MISA.WEB04.P2.CUKCUK.FOOD.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\thapq\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\thapq\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\thapq\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\thapq\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\thapq\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\thapq\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

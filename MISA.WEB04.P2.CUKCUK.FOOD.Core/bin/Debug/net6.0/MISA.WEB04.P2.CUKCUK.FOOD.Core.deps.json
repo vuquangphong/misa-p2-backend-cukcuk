@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MISA.WEB04.P2.CUKCUK.FOOD.Core/1.0.0": {
+        "runtime": {
+          "MISA.WEB04.P2.CUKCUK.FOOD.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MISA.WEB04.P2.CUKCUK.FOOD.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

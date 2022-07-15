@@ -1,0 +1,286 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MISA.WEB04.P2.CUKCUK.FOOD.Api/1.0.0": {
+        "dependencies": {
+          "MISA.WEB04.P2.CUKCUK.FOOD.Core": "1.0.0",
+          "MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "6.0.7",
+          "Swashbuckle.AspNetCore": "6.3.2"
+        },
+        "runtime": {
+          "MISA.WEB04.P2.CUKCUK.FOOD.Api.dll": {}
+        }
+      },
+      "Dapper/2.0.123": {
+        "runtime": {
+          "lib/net5.0/Dapper.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.123.33578"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.JsonPatch/6.0.7": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.JsonPatch.dll": {
+            "assemblyVersion": "6.0.7.0",
+            "fileVersion": "6.0.722.32205"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.NewtonsoftJson/6.0.7": {
+        "dependencies": {
+          "Microsoft.AspNetCore.JsonPatch": "6.0.7",
+          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json.Bson": "1.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {
+            "assemblyVersion": "6.0.7.0",
+            "fileVersion": "6.0.722.32205"
+          }
+        }
+      },
+      "Microsoft.CSharp/4.7.0": {},
+      "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
+      "Microsoft.Extensions.Configuration.Abstractions/6.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        }
+      },
+      "Microsoft.Extensions.Primitives/6.0.0": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        }
+      },
+      "Microsoft.OpenApi/1.2.3": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "assemblyVersion": "1.2.3.0",
+            "fileVersion": "1.2.3.0"
+          }
+        }
+      },
+      "MySqlConnector/2.1.11": {
+        "runtime": {
+          "lib/net6.0/MySqlConnector.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.1.11.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      },
+      "Newtonsoft.Json.Bson/1.0.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.2.22727"
+          }
+        }
+      },
+      "Swashbuckle.AspNetCore/6.3.2": {
+        "dependencies": {
+          "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
+          "Swashbuckle.AspNetCore.Swagger": "6.3.2",
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.3.2",
+          "Swashbuckle.AspNetCore.SwaggerUI": "6.3.2"
+        }
+      },
+      "Swashbuckle.AspNetCore.Swagger/6.3.2": {
+        "dependencies": {
+          "Microsoft.OpenApi": "1.2.3"
+        },
+        "runtime": {
+          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
+            "assemblyVersion": "6.3.2.0",
+            "fileVersion": "6.3.2.0"
+          }
+        }
+      },
+      "Swashbuckle.AspNetCore.SwaggerGen/6.3.2": {
+        "dependencies": {
+          "Swashbuckle.AspNetCore.Swagger": "6.3.2"
+        },
+        "runtime": {
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
+            "assemblyVersion": "6.3.2.0",
+            "fileVersion": "6.3.2.0"
+          }
+        }
+      },
+      "Swashbuckle.AspNetCore.SwaggerUI/6.3.2": {
+        "runtime": {
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
+            "assemblyVersion": "6.3.2.0",
+            "fileVersion": "6.3.2.0"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
+      "MISA.WEB04.P2.CUKCUK.FOOD.Core/1.0.0": {
+        "runtime": {
+          "MISA.WEB04.P2.CUKCUK.FOOD.Core.dll": {}
+        }
+      },
+      "MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure/1.0.0": {
+        "dependencies": {
+          "Dapper": "2.0.123",
+          "MISA.WEB04.P2.CUKCUK.FOOD.Core": "1.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
+          "MySqlConnector": "2.1.11"
+        },
+        "runtime": {
+          "MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MISA.WEB04.P2.CUKCUK.FOOD.Api/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Dapper/2.0.123": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RDFF4rBLLmbpi6pwkY7q/M6UXHRJEOerplDGE5jwEkP/JGJnBauAClYavNKJPW1yOTWRPIyfj4is3EaJxQXILQ==",
+      "path": "dapper/2.0.123",
+      "hashPath": "dapper.2.0.123.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.JsonPatch/6.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ybv3udO2SaGW74NKIxj06ozTtcEJf2yOCNj4OGY/ZvB+LG/mZGBVKrwZYaZBXaWR9dakrf4+M3LiMAhasTEamg==",
+      "path": "microsoft.aspnetcore.jsonpatch/6.0.7",
+      "hashPath": "microsoft.aspnetcore.jsonpatch.6.0.7.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Mvc.NewtonsoftJson/6.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zkt7EFRR5fZQUc6taa8sO8aG+EF7XQ6Z7+fPW3gXCh6l7+vyDpZ9PbTODYMsXaS1tOjP1b+jJgf7hY/kaciO4Q==",
+      "path": "microsoft.aspnetcore.mvc.newtonsoftjson/6.0.7",
+      "hashPath": "microsoft.aspnetcore.mvc.newtonsoftjson.6.0.7.nupkg.sha512"
+    },
+    "Microsoft.CSharp/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ckb5EDBUNJdFWyajfXzUIMRkhf52fHZOQuuZg/oiu8y7zDCVwD0iHhew6MnThjHmevanpxL3f5ci2TtHQEN6bw==",
+      "path": "microsoft.extensions.apidescription.server/6.0.5",
+      "hashPath": "microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.Abstractions/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qWzV9o+ZRWq+pGm+1dF+R7qTgTYoXvbyowRoBxQJGfqTpqDun2eteerjRQhq5PQ/14S+lqto3Ft4gYaRyl4rdQ==",
+      "path": "microsoft.extensions.configuration.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Primitives/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9+PnzmQFfEFNR9J2aDTfJGGupShHjOuGw4VUv+JB044biSHrnmCIMD+mJHmb2H7YryrfBEXDurxQ47gJZdCKNQ==",
+      "path": "microsoft.extensions.primitives/6.0.0",
+      "hashPath": "microsoft.extensions.primitives.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.OpenApi/1.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
+      "path": "microsoft.openapi/1.2.3",
+      "hashPath": "microsoft.openapi.1.2.3.nupkg.sha512"
+    },
+    "MySqlConnector/2.1.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JTWIkFDz0uQhXKLjd53t2zeZn84aGuxCzRRe5NYOInuThRa6OrtdN/iEob2+GYAJeH2f4m42wdmunjT5Y02lIA==",
+      "path": "mysqlconnector/2.1.11",
+      "hashPath": "mysqlconnector.2.1.11.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "Newtonsoft.Json.Bson/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
+      "path": "newtonsoft.json.bson/1.0.2",
+      "hashPath": "newtonsoft.json.bson.1.0.2.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore/6.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DIYR3Y9ph8NfnGr/0mPK5UoQe6YhxImhwMXkdpfaJL4LkHD3jEimkwmdEhO6uNGS3GpgoGhtP0yo0DFklLnL2g==",
+      "path": "swashbuckle.aspnetcore/6.3.2",
+      "hashPath": "swashbuckle.aspnetcore.6.3.2.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.Swagger/6.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RPeMW5GL3UvkWayheR7pYh4Qtq11kQhYV3/+Az6JA3lqrALzjgVAVOIA4eZEMFvfQmI/WYO9fMW3ErnzLSe3Qg==",
+      "path": "swashbuckle.aspnetcore.swagger/6.3.2",
+      "hashPath": "swashbuckle.aspnetcore.swagger.6.3.2.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.SwaggerGen/6.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-b4LC5OhXbtYD4f8aeBhcuO3MJGoudKFtuZB8TTvqYwEM6zRbOn36Lq8+KKMblXlPevPy6fsEz+nywz2p8LjqQA==",
+      "path": "swashbuckle.aspnetcore.swaggergen/6.3.2",
+      "hashPath": "swashbuckle.aspnetcore.swaggergen.6.3.2.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.SwaggerUI/6.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fD2pn5XJ7pYQSj1F4ErfANbBYEpZ+dud33J5i097XgR0gv9ni0pFtMqVeC4ggXbgkD5KZTI1lY8K1CICp5UmwA==",
+      "path": "swashbuckle.aspnetcore.swaggerui/6.3.2",
+      "hashPath": "swashbuckle.aspnetcore.swaggerui.6.3.2.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    },
+    "MISA.WEB04.P2.CUKCUK.FOOD.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,15 @@
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\bin\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.deps.json
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\bin\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.dll
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\bin\Debug\net6.0\ref\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.dll
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\bin\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.pdb
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\bin\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Core.dll
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\bin\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Core.pdb
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\obj\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\obj\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\obj\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\obj\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.AssemblyInfo.cs
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\obj\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\obj\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.csproj.CopyComplete
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\obj\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.dll
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\obj\Debug\net6.0\ref\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.dll
+C:\Users\thapq\MISA-TRAINING-GĐ2\GPBL\backend\MISA.WEB04.P2.CUKCUK.FOOD\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\obj\Debug\net6.0\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.pdb
