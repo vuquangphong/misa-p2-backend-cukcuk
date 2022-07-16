@@ -6,7 +6,7 @@ using MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class FoodUnitController : MISABaseController<FoodUnit>
     {

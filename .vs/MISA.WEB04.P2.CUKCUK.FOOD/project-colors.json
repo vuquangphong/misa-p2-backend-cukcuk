@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "8b2d7e86-ac14-4c66-9c8a-166313f3caae": {
+      "ProjectGuid": "8b2d7e86-ac14-4c66-9c8a-166313f3caae",
+      "DisplayName": "MISA.WEB04.P2.CUKCUK.FOOD",
+      "ColorIndex": 0
+    },
+    "b6fb179e-d54f-4d12-8a24-b14a90837593": {
+      "ProjectGuid": "b6fb179e-d54f-4d12-8a24-b14a90837593",
+      "DisplayName": "MISA.WEB04.P2.CUKCUK.FOOD.Api",
+      "ColorIndex": 1
+    },
+    "d98b796f-63ef-40a2-adf0-1d2ae3c59dca": {
+      "ProjectGuid": "d98b796f-63ef-40a2-adf0-1d2ae3c59dca",
+      "DisplayName": "MISA.WEB04.P2.CUKCUK.FOOD.Core",
+      "ColorIndex": 2
+    },
+    "dd186042-5acf-474c-bb1e-ab843acd9f15": {
+      "ProjectGuid": "dd186042-5acf-474c-bb1e-ab843acd9f15",
+      "DisplayName": "MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 4
+}

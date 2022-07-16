@@ -14,7 +14,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
         public int? FoodUnitID { get; set; }
 
         // The name of food unit
-        [NotEmpty, NotDuplicated]
+        [NotEmpty, NotDuplicated, PropsName("Tên đơn vị tính")]
         public string? FoodUnitName { get; set; }
 
         // The description of food unit

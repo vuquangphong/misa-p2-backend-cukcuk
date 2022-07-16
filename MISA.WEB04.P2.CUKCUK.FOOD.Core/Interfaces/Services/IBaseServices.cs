@@ -26,7 +26,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services
         /// <returns>
         /// A model of ControllerResponseData
         /// </returns>
-        public ControllerResponseData GetDataById(string entityId);
+        public ControllerResponseData GetDataById(int entityId);
 
         /// <summary>
         /// @author: VQPhong (13/02/2022)
@@ -42,7 +42,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services
         /// <returns>
         /// A model of ControllerResponseData
         /// </returns>
-        public ControllerResponseData GetDataPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, string? priceFilter);
+        public ControllerResponseData GetDataPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, double? priceFilter);
 
         /// <summary>
         /// @author: VQPhong (14/07/2022)
@@ -63,7 +63,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services
         /// <returns>
         /// A model of ControllerResponseData
         /// </returns>
-        public ControllerResponseData UpdateData(T entity, Guid entityId);
+        public ControllerResponseData UpdateData(T entity, int entityId);
 
         /// <summary>
         /// @author: VQPhong (14/07/2022)
@@ -73,6 +73,6 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services
         /// <returns>
         /// A model of ControllerResponseData
         /// </returns>
-        public ControllerResponseData DeleteData(string entityId);
+        public ControllerResponseData DeleteData(int entityId);
     }
 }

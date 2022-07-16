@@ -14,11 +14,11 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
         public int? FoodGroupID { get; set; }
 
         // Code of group food
-        [NotEmpty, NotDuplicated]
+        [NotEmpty, NotDuplicated, PropsName("Mã nhóm thức ăn")]
         public string? FoodGroupCode { get; set; }
 
         // Name of the group food
-        [NotEmpty]
+        [NotEmpty, PropsName("Tên nhóm thức ăn")]
         public string? FoodGroupName { get; set; }
 
         // The description of group food

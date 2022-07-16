@@ -38,7 +38,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             return res;
         }
 
-        public ControllerResponseData GetDataById(string entityId)
+        public ControllerResponseData GetDataById(int entityId)
         {
             var data = _baseRepository.GetById(entityId);
 
@@ -51,7 +51,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             return res;
         }
 
-        public ControllerResponseData GetDataPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, string? priceFilter)
+        public ControllerResponseData GetDataPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, double? priceFilter)
         {
             var data = _baseRepository.GetPaging(pageIndex, pageSize, codeFilter, nameFilter, groupFilter, unitFilter, priceFilter);
 
@@ -67,8 +67,35 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
         public ControllerResponseData InsertData(T entity)
         {
             // Validate data from request
-            this.EmptyValidation(entity);
-            this.DuplicatedValidation(entity, Guid.NewGuid(), false);
+            var emptyValidation = this.EmptyValidation(entity);
+
+            if (emptyValidation != null)
+            {
+                return new ControllerResponseData
+                {
+                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
+                    responseData = new
+                    {
+                        devMsg = emptyValidation,
+                        userMsg = emptyValidation,
+                    }
+                };
+            }
+
+            var duplicatedValidation = this.DuplicatedValidation(entity, 0, false);
+
+            if (duplicatedValidation != null)
+            {
+                return new ControllerResponseData
+                {
+                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
+                    responseData = new
+                    {
+                        devMsg = duplicatedValidation,
+                        userMsg = duplicatedValidation,
+                    }
+                };
+            }
 
             // Everything is Okay
             int rowsEffect = _baseRepository.Insert(entity);
@@ -82,11 +109,38 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             return res;
         }
 
-        public ControllerResponseData UpdateData(T entity, Guid entityId)
+        public ControllerResponseData UpdateData(T entity, int entityId)
         {
             // Validate data from request
-            this.EmptyValidation(entity);
-            this.DuplicatedValidation(entity, entityId, true);
+            var emptyValidation = this.EmptyValidation(entity);
+
+            if (emptyValidation != null)
+            {
+                return new ControllerResponseData
+                {
+                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
+                    responseData = new
+                    {
+                        devMsg = emptyValidation,
+                        userMsg = emptyValidation,
+                    }
+                };
+            }
+
+            var duplicatedValidation = this.DuplicatedValidation(entity, entityId, true);
+
+            if (duplicatedValidation != null)
+            {
+                return new ControllerResponseData
+                {
+                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
+                    responseData = new
+                    {
+                        devMsg = duplicatedValidation,
+                        userMsg = duplicatedValidation,
+                    }
+                };
+            }
 
             // Everything is Okay
             int rowsEffect = _baseRepository.UpdateById(entity, entityId);
@@ -100,7 +154,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             return res;
         }
 
-        public ControllerResponseData DeleteData(string entityId)
+        public ControllerResponseData DeleteData(int entityId)
         {
             int rowsEffect = _baseRepository.DeleteById(entityId);
 
@@ -124,7 +178,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
         /// @desc: Check if NotEmpty Props
         /// </summary>
         /// <param name="entity"></param>
-        private void EmptyValidation(T entity)
+        private string? EmptyValidation(T entity)
         {
             // Getting properties marked not allowed Empty
             var notEmptyProps = entity.GetType().GetProperties().Where(
@@ -156,8 +210,11 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
 
                     // Method 3: Do not throw Exception
                     // TODO...
+                    return String.Format(Core.Resourses.VI_Resource.PropNotEmpty, propNameDisplay);
                 }
             }
+
+            return null;
         }
 
         // 2. Check if NotDuplicated Props
@@ -168,7 +225,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
         /// <param name="entity"></param>
         /// <param name="entityId"></param>
         /// <param name="isPut"></param>
-        private void DuplicatedValidation(T entity, Guid entityId, bool isPut)
+        private string? DuplicatedValidation(T entity, int entityId, bool isPut)
         {
             // Getting properties marked not allowed Duplicated
             var notDuplicatedProps = entity.GetType().GetProperties().Where(
@@ -188,7 +245,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
                     propNameDisplay = ((PropsName)propsName[0]).Name;
                 }
 
-                if (_baseRepository.IsDuplicateCode(propValue.ToString(), entityId.ToString(), isPut))
+                if (_baseRepository.IsDuplicateCode(propValue.ToString(), entityId, isPut))
                 {
                     // Method 1: Responding messages respectively
                     //throw new MISAValidateException(String.Format(Core.Resources.ResourceVietnam.PropNotDuplicated, propNameDisplay));
@@ -200,8 +257,11 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
 
                     // Method 3: Do not throw Exception
                     // TODO
+                    return String.Format(Core.Resourses.VI_Resource.PropNotDuplicated, propNameDisplay);
                 }
             }
+
+            return null;
         }
 
         #endregion

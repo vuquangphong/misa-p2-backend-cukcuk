@@ -70,16 +70,16 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
             }
         }
 
-        public T GetById(string entityId)
+        public T GetById(int entityId)
         {
             using (SqlConnection = ConnectDatabase())
             {
                 // Create dynamic parameters
                 DynamicParams = new DynamicParameters();
-                DynamicParams.Add($"@${_entityName}Id", entityId);
+                DynamicParams.Add($"@${_entityName}ID", entityId);
 
                 // Query data in database
-                var sqlQuery = $"Proc_Get{_entityName}ById";
+                var sqlQuery = $"Proc_Get{_entityName}ByID";
 
                 var entity = SqlConnection.QueryFirstOrDefault<T>(
                     sqlQuery,
@@ -91,7 +91,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
             }
         }
 
-        public object GetPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, string? priceFilter)
+        public object GetPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, double? priceFilter)
         {
             DynamicParams = new DynamicParameters();
 
@@ -137,16 +137,8 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
             {
                 var propertyName = property.Name;
                 var propertyValue = property.GetValue(entity);
-                var propertyType = property.PropertyType;
 
-                if (propertyType == typeof(Guid) || propertyType == typeof(Guid?))
-                {
-                    DynamicParams.Add($"@${propertyName}", propertyValue, DbType.String);
-                }
-                else
-                {
-                    DynamicParams.Add($"@${propertyName}", propertyValue);
-                }
+                DynamicParams.Add($"@${propertyName}", propertyValue);
             }
 
             var sqlQuery = $"Proc_Create{_entityName}";
@@ -163,32 +155,24 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
             }
         }
 
-        public int UpdateById(T entity, Guid entityId)
+        public int UpdateById(T entity, int entityId)
         {
             // Create dynamic parameters
             DynamicParams = new DynamicParameters();
-            DynamicParams.Add($"@${_entityName}Id", entityId, DbType.String);
+            DynamicParams.Add($"@${_entityName}ID", entityId);
 
             var properties = entity.GetType().GetProperties();
 
             foreach (var property in properties)
             {
                 var propertyName = property.Name;
-                if (propertyName == $"{_entityName}Id")
+                if (propertyName == $"{_entityName}ID")
                 {
                     property.SetValue(entity, entityId);
                 }
                 var propertyValue = property.GetValue(entity);
-                var propertyType = property.PropertyType;
 
-                if (propertyType == typeof(Guid) || propertyType == typeof(Guid?))
-                {
-                    DynamicParams.Add($"@${propertyName}", propertyValue, DbType.String);
-                }
-                else
-                {
-                    DynamicParams.Add($"@${propertyName}", propertyValue);
-                }
+                DynamicParams.Add($"@${propertyName}", propertyValue);
             }
 
             // Query data in database
@@ -206,7 +190,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
             }
         }
 
-        public bool IsDuplicateCode(string entityCode, string entityId, bool isPut)
+        public bool IsDuplicateCode(string entityCode, int entityId, bool isPut)
         {
             using (SqlConnection = ConnectDatabase())
             {
@@ -215,9 +199,9 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
 
                 if (isPut)
                 {
-                    DynamicParams.Add($"@{_entityName}Id", entityId);
+                    DynamicParams.Add($"@{_entityName}ID", entityId);
 
-                    var sqlQuery = $"SELECT {_entityName}Code FROM {_entityName} WHERE {_entityName}Id = @{_entityName}Id";
+                    var sqlQuery = $"SELECT {_entityName}Code FROM {_entityName} WHERE {_entityName}ID = @{_entityName}ID";
                     var currentEntity = SqlConnection.QueryFirstOrDefault<T>(sqlQuery, param: DynamicParams);
                     var propsCurEntity = currentEntity.GetType().GetProperties();
 
@@ -246,16 +230,16 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
             }
         }
 
-        public int DeleteById(string entityId)
+        public int DeleteById(int entityId)
         {
             using (SqlConnection = ConnectDatabase())
             {
                 // Create dynamic parameters
                 DynamicParams = new DynamicParameters();
-                DynamicParams.Add($"@${_entityName}Id", entityId);
+                DynamicParams.Add($"@${_entityName}ID", entityId);
 
                 // Query data in Database
-                var sqlQuery = $"Proc_Delete{_entityName}ById";
+                var sqlQuery = $"Proc_Delete{_entityName}ByID";
                 var rowsEffect = SqlConnection.Execute(
                     sqlQuery,
                     param: DynamicParams,

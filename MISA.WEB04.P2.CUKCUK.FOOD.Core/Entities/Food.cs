@@ -15,24 +15,30 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
         public int? FoodID { get; set; }
 
         // Code of food
-        [NotEmpty, NotDuplicated]
+        [NotEmpty, NotDuplicated, PropsName("Mã món")]
         public string? FoodCode { get; set; }
 
         // Name of food
-        [NotEmpty]
+        [NotEmpty, PropsName("Tên món")]
         public string? FoodName { get; set; }
 
         // The foreign key
         // The group ID of food
         public int? FoodGroupID { get; set; }
 
+        // The group name of food
+        public string? FoodGroupName { get; set; }
+
         // The foreign key
         // The unit ID of food
-        [NotEmpty]
+        [NotEmpty, PropsName("Đơn vị tính")]
         public int? FoodUnitID { get; set; }
 
+        // The unit name of food
+        public string? FoodUnitName { get; set; }
+
         // The price of food
-        [NotEmpty]
+        [NotEmpty, PropsName("Giá bán")]
         public double? FoodPrice { get; set; }
 
         // The init cost of food
@@ -44,6 +50,9 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
         // The foreign key
         // The ID of place where the food is prepared
         public int? FoodPlaceID { get; set; }
+
+        // The name of place where the food is prepared
+        public string? FoodPlaceName { get; set; }
 
         // Food shows up on the menu or not
         // Null/0 --> yes

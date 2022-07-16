@@ -14,15 +14,15 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
         public int? FavorServiceID { get; set; }
 
         // Foreign key mapping to Food
-        [NotEmpty]
+        [NotEmpty, PropsName("ID Món")]
         public int? FoodID { get; set; }
 
         // The content of serving preferences
-        [NotEmpty]
+        [NotEmpty, PropsName("Nội dung sở thích")]
         public string? Content { get; set; }
 
         // The extra charge for the services
-        [NotEmpty]
+        [NotEmpty, PropsName("Phí thu thêm")]
         public double? Surcharge { get; set; }
 
         // The Date of record creation

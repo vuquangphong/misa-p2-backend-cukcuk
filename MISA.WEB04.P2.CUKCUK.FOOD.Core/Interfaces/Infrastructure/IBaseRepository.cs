@@ -25,7 +25,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// An Entity
         /// </returns>
-        public T GetById(string entityId);
+        public T GetById(int entityId);
 
         /// <summary>
         /// @author: VQPhong (14/07/2022)
@@ -41,7 +41,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// An object
         /// </returns>
-        public object GetPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, string? priceFilter);
+        public object GetPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, double? priceFilter);
 
         /// <summary>
         /// @author: VQPhong (14/07/2022)
@@ -62,7 +62,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// A number of rows which is affected
         /// </returns>
-        public int UpdateById(T entity, Guid entityId);
+        public int UpdateById(T entity, int entityId);
 
         /// <summary>
         /// @author: VQPhong (14/07/2022)
@@ -73,7 +73,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// True <--> EntityCode Coincidence
         /// False <--> No EntityCode Coincidence
         /// </returns>
-        public bool IsDuplicateCode(string entityCode, string entityId, bool isPut);
+        public bool IsDuplicateCode(string entityCode, int entityId, bool isPut);
 
         /// <summary>
         /// @author: VQPhong (14/07/2022)
@@ -83,6 +83,6 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// A number of rows which is affected
         /// </returns>
-        public int DeleteById(string entityId);
+        public int DeleteById(int entityId);
     }
 }

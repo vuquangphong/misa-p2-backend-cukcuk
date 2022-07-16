@@ -5,7 +5,7 @@ using MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class MISABaseController<T> : ControllerBase
     {
@@ -79,7 +79,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
         /// The Entity corresponding
         /// </returns>
         [HttpGet("{entityId}")]
-        public IActionResult Get(string entityId)
+        public IActionResult Get(int entityId)
         {
             try
             {
@@ -106,7 +106,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
         /// <param name="unitFilter"></param>
         /// <param name="priceFilter"></param>
         [HttpGet("filter")]
-        public IActionResult GetPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, string? priceFilter)
+        public IActionResult GetPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, double? priceFilter)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
         /// A Message (Success or Fail)
         /// </returns>
         [HttpPut("{entityId}")]
-        public IActionResult Put(T entity, Guid entityId)
+        public IActionResult Put(T entity, int entityId)
         {
             try
             {
@@ -176,7 +176,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
         /// A Message (Success or Fail)
         /// </returns>
         [HttpDelete("{entityId}")]
-        public IActionResult Delete(string entityId)
+        public IActionResult Delete(int entityId)
         {
             try
             {

@@ -14,7 +14,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
         public int? FoodPlaceID { get; set; }
 
         // The name of place where food is prepared
-        [NotEmpty, NotDuplicated]
+        [NotEmpty, NotDuplicated, PropsName("Tên nơi chế biến")]
         public string? FoodPlaceName { get; set; }
 
         // The description of place where food is prepared
