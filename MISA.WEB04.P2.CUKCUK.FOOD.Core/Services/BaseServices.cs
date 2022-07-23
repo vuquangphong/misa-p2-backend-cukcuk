@@ -237,6 +237,8 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
                 // Getting the value of the Property
                 var propValue = prop.GetValue(entity);
 
+                var normalPropName = prop.Name;
+
                 // Getting PropsName of the Property
                 var propsName = prop.GetCustomAttributes(typeof(PropsName), true);
                 var propNameDisplay = string.Empty;
@@ -245,7 +247,19 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
                     propNameDisplay = ((PropsName)propsName[0]).Name;
                 }
 
-                if (_baseRepository.IsDuplicateCode(propValue.ToString(), entityId, isPut))
+                bool checkContainName = normalPropName.Contains("Name");
+                bool checkDuplicate;
+
+                if (checkContainName)
+                {
+                    checkDuplicate = _baseRepository.IsDuplicateName(propValue.ToString());
+                } 
+                else
+                {
+                    checkDuplicate = _baseRepository.IsDuplicateCode(propValue.ToString(), entityId, isPut);
+                }
+
+                if (checkDuplicate)
                 {
                     // Method 1: Responding messages respectively
                     //throw new MISAValidateException(String.Format(Core.Resources.ResourceVietnam.PropNotDuplicated, propNameDisplay));
@@ -256,7 +270,6 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
 
 
                     // Method 3: Do not throw Exception
-                    // TODO
                     return String.Format(Core.Resourses.VI_Resource.PropNotDuplicated, propNameDisplay);
                 }
             }

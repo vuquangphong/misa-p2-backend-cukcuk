@@ -76,6 +76,18 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         public bool IsDuplicateCode(string entityCode, int entityId, bool isPut);
 
         /// <summary>
+        /// @author: VQPhong (22/07/2022)
+        /// @desc: Check if the current EntityName is duplicated
+        /// </summary>
+        /// <param name="entityName"></param>
+        /// <param name="entityId"></param>
+        /// <returns>
+        /// True <--> EntityName Coincidence
+        /// False <--> No EntityName Coincidence
+        /// </returns>
+        public bool IsDuplicateName(string entityName);
+
+        /// <summary>
         /// @author: VQPhong (14/07/2022)
         /// @desc: Removing an Entity from Database
         /// </summary>

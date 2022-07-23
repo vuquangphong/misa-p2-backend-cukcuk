@@ -8,14 +8,14 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class FavorServiceController : MISABaseController<FavorService>
+    public class FavorServicesController : MISABaseController<FavorService>
     {
         #region Dependency Injection
 
         private readonly IFavorServiceRepository _favorServiceRepository;
         private readonly IFavorServiceServices _favorServiceServices;
 
-        public FavorServiceController(IFavorServiceRepository favorServiceRepository, IFavorServiceServices favorServiceServices) : base(favorServiceRepository, favorServiceServices)
+        public FavorServicesController(IFavorServiceRepository favorServiceRepository, IFavorServiceServices favorServiceServices) : base(favorServiceRepository, favorServiceServices)
         {
             _favorServiceRepository = favorServiceRepository;
             _favorServiceServices = favorServiceServices;

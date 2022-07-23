@@ -105,6 +105,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
 
             DynamicParams.Add("@$TotalRecords", direction: ParameterDirection.Output, dbType: DbType.Int32);
             DynamicParams.Add("@$TotalPages", direction: ParameterDirection.Output, dbType: DbType.Int32);
+            DynamicParams.Add("@$TotalRecordsInPage", direction: ParameterDirection.Output, dbType: DbType.Int32);
 
             using (SqlConnection = ConnectDatabase())
             {
@@ -116,11 +117,13 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
 
                 int totalRecords = DynamicParams.Get<int>("@$TotalRecords");
                 int totalPages = DynamicParams.Get<int>("@$TotalPages");
+                int totalRecordsInPage = DynamicParams.Get<int>("@$TotalRecordsInPage");
 
                 return new
                 {
                     TotalRecords = totalRecords,
                     TotalPages = totalPages,
+                    TotalRecordsInPage = totalRecordsInPage,
                     Data = entitiesPaging,
                 };
             }
@@ -227,6 +230,24 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
                 }
                 return true;
 
+            }
+        }
+
+        public bool IsDuplicateName(string entityName)
+        {
+            using (SqlConnection = ConnectDatabase())
+            {
+                DynamicParams = new DynamicParameters();
+                DynamicParams.Add($"@{_entityName}Name", entityName);
+
+                var sqlQuery = $"SELECT {_entityName}Name FROM {_entityName} WHERE {_entityName}Name = @{_entityName}Name";
+                var isExist = SqlConnection.QueryFirstOrDefault(sqlQuery, param: DynamicParams);
+
+                if (isExist == null)
+                {
+                    return false;
+                }
+                return true;
             }
         }
 

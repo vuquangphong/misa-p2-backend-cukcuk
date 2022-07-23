@@ -8,14 +8,14 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class FoodController : MISABaseController<Food>
+    public class FoodsController : MISABaseController<Food>
     {
         #region Dependency Injection
 
         private readonly IFoodRepository _foodRepository;
         private readonly IFoodServices _foodServices;
 
-        public FoodController(IFoodRepository foodRepository, IFoodServices foodServices) : base(foodRepository, foodServices)
+        public FoodsController(IFoodRepository foodRepository, IFoodServices foodServices) : base(foodRepository, foodServices)
         {
             _foodRepository = foodRepository;
             _foodServices = foodServices;
