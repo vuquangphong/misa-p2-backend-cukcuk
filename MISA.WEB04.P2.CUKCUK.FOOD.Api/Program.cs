@@ -19,11 +19,13 @@ builder.Services.AddScoped<IFoodGroupRepository, FoodGroupRepository>();
 builder.Services.AddScoped<IFoodPlaceRepository, FoodPlaceRepository>();
 builder.Services.AddScoped<IFoodUnitRepository, FoodUnitRepository>();
 builder.Services.AddScoped<IFavorServiceRepository, FavorServiceRepository>();
+builder.Services.AddScoped<IFoodFavorServiceRepository, FoodFavorServiceRepository>();
 builder.Services.AddScoped<IFoodServices, FoodServices>();
 builder.Services.AddScoped<IFoodGroupServices, FoodGroupServices>();
 builder.Services.AddScoped<IFoodPlaceServices, FoodPlaceServices>();
 builder.Services.AddScoped<IFoodUnitServices, FoodUnitServices>();
 builder.Services.AddScoped<IFavorServiceServices, FavorServiceServices>();
+builder.Services.AddScoped<IFoodFavorServiceServices, FoodFavorServiceServices>();
 
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped(typeof(IBaseServices<>), typeof(BaseServices<>));

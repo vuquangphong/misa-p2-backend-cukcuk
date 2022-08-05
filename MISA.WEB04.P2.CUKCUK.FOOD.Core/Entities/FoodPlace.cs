@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
 {
+    /// <summary>
+    /// The entity illustrate the place in which the food is prepared
+    /// </summary>
     public class FoodPlace
     {
         // Primary Key

@@ -34,6 +34,15 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Attributes
     }
 
     /// <summary>
+    /// @author: VQPhong (03/08/2022)
+    /// @desc: Marking the Properties that: they are not allowed duplicated at the same time
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property)]
+    public class NotDuplicatedCombo : Attribute
+    {
+    }
+
+    /// <summary>
     /// @author: VQPhong (14/07/2022)
     /// @desc: Marking the Vietnamese Name of Properties
     /// </summary>
@@ -46,5 +55,14 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Attributes
         {
             Name = name;
         }
+    }
+
+    /// <summary>
+    /// @author: VQPhong (04/08/2022)
+    /// @desc: Ignore props which are marked this Attibute when adding dynamic params
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property)]
+    public class NotUsageParams : Attribute
+    {
     }
 }

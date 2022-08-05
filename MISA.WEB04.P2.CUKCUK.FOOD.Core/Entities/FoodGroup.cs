@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
 {
+    /// <summary>
+    /// The entity illustrate the Group of Food
+    /// </summary>
     public class FoodGroup
     {
         // Primary Key

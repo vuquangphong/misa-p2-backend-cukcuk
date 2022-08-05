@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
 {
+    /// <summary>
+    /// The entity illustrate the Favorite Services of foods
+    /// </summary>
     public class FavorService
     {
         // Primary Key
-        [PrimaryKey]
+        // PropsName which tagged with Primary Key is the name of entity
+        [PrimaryKey, PropsName("Sở thích phục vụ")]
         public int? FavorServiceID { get; set; }
 
-        // Foreign key mapping to Food
-        [NotEmpty, PropsName("ID Món")]
-        public int? FoodID { get; set; }
-
         // The content of serving preferences
-        [NotEmpty, PropsName("Nội dung sở thích")]
+        [NotEmpty, PropsName("Nội dung sở thích"), NotDuplicatedCombo]
         public string? Content { get; set; }
 
         // The extra charge for the services
-        [NotEmpty, PropsName("Phí thu thêm")]
+        [NotEmpty, PropsName("Phí thu thêm"), NotDuplicatedCombo]
         public double? Surcharge { get; set; }
 
         // The Date of record creation

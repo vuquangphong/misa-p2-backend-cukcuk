@@ -9,5 +9,14 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
 {
     public interface IFavorServiceRepository : IBaseRepository<FavorService>
     {
+        /// <summary>
+        /// @author: VQPhong (25/07/2022)
+        /// @desc: Get a list of FavorServices by FoodID
+        /// </summary>
+        /// <param name="foodId"></param>
+        /// <returns>
+        /// An array of Favorite Services
+        /// </returns>
+        public IEnumerable<FavorService> GetByFoodId(int foodId);
     }
 }

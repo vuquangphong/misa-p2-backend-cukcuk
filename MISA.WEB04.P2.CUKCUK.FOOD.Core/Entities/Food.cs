@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
 {
+    /// <summary>
+    /// The entity illustrate the Food in the menu
+    /// </summary>
     public class Food
     {
         // Primary Key
@@ -63,9 +66,19 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
         public string? Avatar { get; set; }
 
         // Date of record creation
+        [NotUsageParams]
         public DateTime? CreatedDate { get; set; }
 
         // Date of record modification
+        [NotUsageParams]
         public DateTime? ModifiedDate { get; set; }
+
+        // List of FavorService of the Food
+        [NotUsageParams]
+        public IEnumerable<FavorService>? FavorServices { get; set; }
+
+        // List of FavorServiceIDs which need to be removed
+        [NotUsageParams]
+        public IEnumerable<int>? DelFavorServiceIds { get; set; }
     }
 }

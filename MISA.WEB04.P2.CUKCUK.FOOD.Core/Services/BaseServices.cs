@@ -25,6 +25,13 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
 
         #region Main Functions
 
+        /// <summary>
+        /// @author: VQPhong (14/07/2022)
+        /// @desc: The Service of GetAll
+        /// </summary>
+        /// <returns>
+        /// A model of ControllerResponseData
+        /// </returns>
         public ControllerResponseData GetAllData()
         {
             var data = _baseRepository.GetAll();
@@ -38,6 +45,14 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             return res;
         }
 
+        /// <summary>
+        /// @author: VQPhong (14/07/2022)
+        /// @desc: The service of Get by Id
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns>
+        /// A model of ControllerResponseData
+        /// </returns>
         public ControllerResponseData GetDataById(int entityId)
         {
             var data = _baseRepository.GetById(entityId);
@@ -51,6 +66,20 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             return res;
         }
 
+        /// <summary>
+        /// @author: VQPhong (13/02/2022)
+        /// @desc: Service of Get Paging
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="codeFilter"></param>
+        /// <param name="nameFilter"></param>
+        /// <param name="groupFilter"></param>
+        /// <param name="unitFilter"></param>
+        /// <param name="priceFilter"></param>
+        /// <returns>
+        /// A model of ControllerResponseData
+        /// </returns>
         public ControllerResponseData GetDataPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, double? priceFilter)
         {
             var data = _baseRepository.GetPaging(pageIndex, pageSize, codeFilter, nameFilter, groupFilter, unitFilter, priceFilter);
@@ -64,7 +93,15 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             return res;
         }
 
-        public ControllerResponseData InsertData(T entity)
+        /// <summary>
+        /// @author: VQPhong (14/07/2022)
+        /// @desc: The Service for Adding a new Entity
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>
+        /// A model of ControllerResponseData
+        /// </returns>
+        public virtual ControllerResponseData InsertData(T entity)
         {
             // Validate data from request
             var emptyValidation = this.EmptyValidation(entity);
@@ -82,7 +119,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
                 };
             }
 
-            var duplicatedValidation = this.DuplicatedValidation(entity, 0, false);
+            var duplicatedValidation = _baseRepository.CheckDuplicatedProp(entity, null);
 
             if (duplicatedValidation != null)
             {
@@ -109,6 +146,15 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             return res;
         }
 
+        /// <summary>
+        /// @author: VQPhong (14/07/2022)
+        /// @desc: The Service for Updating an Entity
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="entityId"></param>
+        /// <returns>
+        /// A model of ControllerResponseData
+        /// </returns>
         public ControllerResponseData UpdateData(T entity, int entityId)
         {
             // Validate data from request
@@ -127,7 +173,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
                 };
             }
 
-            var duplicatedValidation = this.DuplicatedValidation(entity, entityId, true);
+            var duplicatedValidation = _baseRepository.CheckDuplicatedProp(entity, entityId);
 
             if (duplicatedValidation != null)
             {
@@ -154,6 +200,14 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             return res;
         }
 
+        /// <summary>
+        /// @author: VQPhong (14/07/2022)
+        /// @desc: The Service of Removing an Entity by Id
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns>
+        /// A model of ControllerResponseData
+        /// </returns>
         public ControllerResponseData DeleteData(int entityId)
         {
             int rowsEffect = _baseRepository.DeleteById(entityId);
@@ -172,105 +226,38 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
         #region Support Methods
 
         // General Validation
-        // 1. Check if NotEmpty Props
         /// <summary>
         /// @author: Vũ Quang Phong (14/07/2022)
         /// @desc: Check if NotEmpty Props
         /// </summary>
         /// <param name="entity"></param>
-        private string? EmptyValidation(T entity)
+        protected virtual string? EmptyValidation<T>(T entity)
         {
             // Getting properties marked not allowed Empty
-            var notEmptyProps = entity.GetType().GetProperties().Where(
+            var notEmptyProps = entity?.GetType().GetProperties().Where(
                 prop => Attribute.IsDefined(prop, typeof(NotEmpty))
             );
 
-            foreach (var prop in notEmptyProps)
+            if (notEmptyProps != null)
             {
-                // Getting the value of the Property
-                var propValue = prop.GetValue(entity);
-
-                // Getting PropsName of the Property
-                var propsName = prop.GetCustomAttributes(typeof(PropsName), true);
-                var propNameDisplay = string.Empty;
-                if (propsName.Length > 0)
+                foreach (var prop in notEmptyProps)
                 {
-                    propNameDisplay = ((PropsName)propsName[0]).Name;
-                }
+                    // Getting the value of the Property
+                    var propValue = prop.GetValue(entity);
 
-                if (propValue == null || string.IsNullOrEmpty(propValue.ToString()))
-                {
-                    // Method 1: Responding messages respectively
-                    //throw new MISAValidateException(String.Format(Core.Resources.ResourceVietnam.PropNotEmpty, propNameDisplay));
+                    // Check if propValue null or not null
+                    if (propValue == null || string.IsNullOrEmpty(propValue.ToString()))
+                    {
+                        // Getting PropsName of the Property
+                        var propsName = prop.GetCustomAttributes(typeof(PropsName), true);
+                        var propNameDisplay = string.Empty;
+                        if (propsName.Length > 0)
+                        {
+                            propNameDisplay = ((PropsName)propsName[0]).Name;
+                        }
 
-                    // Method 2: Responding all at once
-                    //_listErrMsgs.Add(String.Format(Core.Resources.ResourceVietnam.PropNotEmpty, propNameDisplay));
-
-
-
-                    // Method 3: Do not throw Exception
-                    // TODO...
-                    return String.Format(Core.Resourses.VI_Resource.PropNotEmpty, propNameDisplay);
-                }
-            }
-
-            return null;
-        }
-
-        // 2. Check if NotDuplicated Props
-        /// <summary>
-        /// @author: Vũ Quang Phong (14/07/2022)
-        /// @desc: Check if NotDuplicated Props
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <param name="entityId"></param>
-        /// <param name="isPut"></param>
-        private string? DuplicatedValidation(T entity, int entityId, bool isPut)
-        {
-            // Getting properties marked not allowed Duplicated
-            var notDuplicatedProps = entity.GetType().GetProperties().Where(
-                prop => Attribute.IsDefined(prop, typeof(NotDuplicated))
-            );
-
-            foreach (var prop in notDuplicatedProps)
-            {
-                // Getting the value of the Property
-                var propValue = prop.GetValue(entity);
-
-                var normalPropName = prop.Name;
-
-                // Getting PropsName of the Property
-                var propsName = prop.GetCustomAttributes(typeof(PropsName), true);
-                var propNameDisplay = string.Empty;
-                if (propsName.Length > 0)
-                {
-                    propNameDisplay = ((PropsName)propsName[0]).Name;
-                }
-
-                bool checkContainName = normalPropName.Contains("Name");
-                bool checkDuplicate;
-
-                if (checkContainName)
-                {
-                    checkDuplicate = _baseRepository.IsDuplicateName(propValue.ToString());
-                } 
-                else
-                {
-                    checkDuplicate = _baseRepository.IsDuplicateCode(propValue.ToString(), entityId, isPut);
-                }
-
-                if (checkDuplicate)
-                {
-                    // Method 1: Responding messages respectively
-                    //throw new MISAValidateException(String.Format(Core.Resources.ResourceVietnam.PropNotDuplicated, propNameDisplay));
-
-                    // Method 2: Responding all at once
-                    //_listErrMsgs.Add(String.Format(Core.Resources.ResourceVietnam.PropNotDuplicated, propNameDisplay));
-
-
-
-                    // Method 3: Do not throw Exception
-                    return String.Format(Core.Resourses.VI_Resource.PropNotDuplicated, propNameDisplay);
+                        return String.Format(Core.Resourses.VI_Resource.PropNotEmpty, propNameDisplay);
+                    }
                 }
             }
 

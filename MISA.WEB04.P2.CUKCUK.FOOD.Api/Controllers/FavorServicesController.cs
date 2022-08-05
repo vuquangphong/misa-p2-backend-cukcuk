@@ -22,5 +22,39 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
         }
 
         #endregion
+
+        /// <summary>
+        /// @method: GET /FavorServices/food/{foodId}
+        /// @desc: Get the Info of an array of favorite services by foodId
+        /// @author: VQPhong (25/07/2022)
+        /// </summary>
+        /// <param name="foodId"></param>
+        [HttpGet("Foods/{foodId}")]
+        public IActionResult GetFavor(int foodId)
+        {
+            try
+            {
+                var res = _favorServiceServices.GetDataByFoodId(foodId);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return CatchException(ex);
+            }
+        }
+
+        [HttpPost]
+        public override IActionResult Post(FavorService favorService)
+        {
+            try
+            {
+                var res = _favorServiceServices.InsertData(favorService);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return CatchException(ex);
+            }
+        }
     }
 }

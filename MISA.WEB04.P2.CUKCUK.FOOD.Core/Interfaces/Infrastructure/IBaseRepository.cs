@@ -21,7 +21,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// @author: VQPhong (14/07/2022)
         /// @desc: Getting an Entity <T> from Database by Id
         /// </summary>
-        /// <param name="entityId"></param>
+        /// <param name="entityId">The ID of the entity</param>
         /// <returns>
         /// An Entity
         /// </returns>
@@ -31,15 +31,15 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// @author: VQPhong (14/07/2022)
         /// @desc: Get a list of Entities by PageIndex and PageSize, and/or searchText
         /// </summary>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <param name="codeFilter"></param>
-        /// <param name="nameFilter"></param>
-        /// <param name="groupFilter"></param>
-        /// <param name="unitFilter"></param>
-        /// <param name="priceFilter"></param>
+        /// <param name="pageIndex">The page number</param>
+        /// <param name="pageSize">The size of the page</param>
+        /// <param name="codeFilter">The filter for Code property</param>
+        /// <param name="nameFilter">The filter for Name property</param>
+        /// <param name="groupFilter">The filter for Group Name property</param>
+        /// <param name="unitFilter">The filter for Unit Name property</param>
+        /// <param name="priceFilter">The filter for Price property</param>
         /// <returns>
-        /// An object
+        /// An object contains: TotalRecords, TotalPages, TotalRecordsInPage, [main]Data 
         /// </returns>
         public object GetPaging(int? pageIndex, int? pageSize, string? codeFilter, string? nameFilter, string? groupFilter, string? unitFilter, double? priceFilter);
 
@@ -47,18 +47,18 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// @author: VQPhong (14/07/2022)
         /// @desc: Inserting a new record into Entity Database
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">Entity needs to be inserted</param>
         /// <returns>
         /// A number of rows which is affected
         /// </returns>
         public int Insert(T entity);
 
         /// <summary>
-        /// @author: VQPhong (14/07/2022)
+        /// @author: VQPhong (01/08/2022)
         /// @desc: Updating an Entity by Id
         /// </summary>
-        /// <param name="entity"></param>
-        /// <param name="entityId"></param>
+        /// <param name="entity">Entity needs to be updated</param>
+        /// <param name="entityId">The ID of the entity</param>
         /// <returns>
         /// A number of rows which is affected
         /// </returns>
@@ -66,35 +66,35 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
 
         /// <summary>
         /// @author: VQPhong (14/07/2022)
-        /// @desc: Check if the current EntityCode is duplicate
-        /// </summary>
-        /// <param name="entityCode"></param>
-        /// <returns>
-        /// True <--> EntityCode Coincidence
-        /// False <--> No EntityCode Coincidence
-        /// </returns>
-        public bool IsDuplicateCode(string entityCode, int entityId, bool isPut);
-
-        /// <summary>
-        /// @author: VQPhong (22/07/2022)
-        /// @desc: Check if the current EntityName is duplicated
-        /// </summary>
-        /// <param name="entityName"></param>
-        /// <param name="entityId"></param>
-        /// <returns>
-        /// True <--> EntityName Coincidence
-        /// False <--> No EntityName Coincidence
-        /// </returns>
-        public bool IsDuplicateName(string entityName);
-
-        /// <summary>
-        /// @author: VQPhong (14/07/2022)
         /// @desc: Removing an Entity from Database
         /// </summary>
-        /// <param name="entityId"></param>
+        /// <param name="entityId">The ID of the entity</param>
         /// <returns>
         /// A number of rows which is affected
         /// </returns>
         public int DeleteById(int entityId);
+
+        /// <summary>
+        /// @author: VQPhong (01/08/2022)
+        /// @desc: Check if some props are duplicated or not
+        /// </summary>
+        /// <param name="entity">The entity needs to be checked</param>
+        /// <param name="entityId">The ID of the entity</param>
+        /// <returns>
+        /// Duplicated --> An alert string corresponding
+        /// All not duplicate --> null string
+        /// </returns>
+        public string? CheckDuplicatedProp(T entity, int? entityId);
+
+        /// <summary>
+        /// @author: VQPhong (03/08/2022)
+        /// @desc: Check if combo props already exist
+        /// </summary>
+        /// <param name="entity">The entity record needs to be checked combo props</param>
+        /// <returns>
+        /// An alert message if exist
+        /// Null if not exist
+        /// </returns>
+        public string? CheckDuplicatedCombo(T entity);
     }
 }

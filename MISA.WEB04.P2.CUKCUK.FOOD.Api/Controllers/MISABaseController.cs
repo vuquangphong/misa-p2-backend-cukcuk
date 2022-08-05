@@ -129,7 +129,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
         /// A Message (Success or Fail)
         /// </returns>
         [HttpPost]
-        public IActionResult Post(T entity)
+        public virtual IActionResult Post(T entity)
         {
             try
             {
@@ -165,7 +165,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
                 return CatchException(ex);
             }
         }
-
+        
         /// <summary>
         /// @method: DELETE /Entities/{entityId}
         /// @desc: Remove an Entity by Id
@@ -188,6 +188,55 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
                 return CatchException(ex);
             }
         }
+
+        /// <summary>
+        /// @method: POST /Entities/child?textOfChild=...
+        /// @desc: Insert a new Entity and its child records into Database
+        /// @author: VQPhong (25/07/2022)
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="textOfChild"></param>
+        /// <returns>
+        /// A Message (Success or Fail)
+        /// </returns>
+        //[HttpPost("child")]
+        //public IActionResult FullPost(T entity, string? textOfChild)
+        //{
+        //    try
+        //    {
+        //        var res = _baseServices.FullInsertData(entity, textOfChild);
+        //        return Ok(res);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return CatchException(ex);
+        //    }
+        //}
+
+        /// <summary>
+        /// @method: PUT /Entities/child?textOfChild=...
+        /// @desc: Update some Info of an Entity
+        /// @author: VQPhong (25/07/2022)
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="entityId"></param>
+        /// <param name="textOfChild"></param>
+        /// <returns>
+        /// A Message (Success or Fail)
+        /// </returns>
+        //[HttpPut("child")]
+        //public IActionResult FullPut(T entity, int entityId, string? textOfChild)
+        //{
+        //    try
+        //    {
+        //        var res = _baseServices.FullUpdateData(entity, entityId, textOfChild);
+        //        return Ok(res);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return CatchException(ex);
+        //    }
+        //}
 
         #endregion
     }

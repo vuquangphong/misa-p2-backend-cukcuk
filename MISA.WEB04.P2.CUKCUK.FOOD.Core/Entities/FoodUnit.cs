@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
 {
+    /// <summary>
+    /// The entity illustrate the unit of foods
+    /// </summary>
     public class FoodUnit
     {
         // Primary Key

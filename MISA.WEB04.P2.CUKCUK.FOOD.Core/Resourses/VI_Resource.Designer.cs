@@ -61,7 +61,16 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Resourses {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} đã tồn tại, vui lòng nhập lại!.
+        ///   Looks up a localized string similar to {0} &lt;{1}&gt; đã bị trùng. Vui lòng kiểm tra lại. .
+        /// </summary>
+        public static string NotDuplicatedCombo {
+            get {
+                return ResourceManager.GetString("NotDuplicatedCombo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} đã tồn tại, vui lòng nhập lại..
         /// </summary>
         public static string PropNotDuplicated {
             get {
@@ -70,7 +79,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Resourses {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} không được phép để trống!.
+        ///   Looks up a localized string similar to {0} không được phép để trống..
         /// </summary>
         public static string PropNotEmpty {
             get {
@@ -79,7 +88,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Resourses {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Đã có lỗi xảy ra, vui lòng liên hệ với MISA!.
+        ///   Looks up a localized string similar to Đã có lỗi xảy ra, vui lòng liên hệ với MISA..
         /// </summary>
         public static string UserMsgServerError {
             get {
