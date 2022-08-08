@@ -190,53 +190,27 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
         }
 
         /// <summary>
-        /// @method: POST /Entities/child?textOfChild=...
-        /// @desc: Insert a new Entity and its child records into Database
-        /// @author: VQPhong (25/07/2022)
+        /// @nethod: GET /Codes/{entityCode}
+        /// @author: VQPhong (08/08/2022)
+        /// @desc: Check if the current code is duplicated or not
         /// </summary>
-        /// <param name="entity"></param>
-        /// <param name="textOfChild"></param>
+        /// <param name="code">The code needs to be checked</param>
         /// <returns>
-        /// A Message (Success or Fail)
+        /// A message
         /// </returns>
-        //[HttpPost("child")]
-        //public IActionResult FullPost(T entity, string? textOfChild)
-        //{
-        //    try
-        //    {
-        //        var res = _baseServices.FullInsertData(entity, textOfChild);
-        //        return Ok(res);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return CatchException(ex);
-        //    }
-        //}
-
-        /// <summary>
-        /// @method: PUT /Entities/child?textOfChild=...
-        /// @desc: Update some Info of an Entity
-        /// @author: VQPhong (25/07/2022)
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <param name="entityId"></param>
-        /// <param name="textOfChild"></param>
-        /// <returns>
-        /// A Message (Success or Fail)
-        /// </returns>
-        //[HttpPut("child")]
-        //public IActionResult FullPut(T entity, int entityId, string? textOfChild)
-        //{
-        //    try
-        //    {
-        //        var res = _baseServices.FullUpdateData(entity, entityId, textOfChild);
-        //        return Ok(res);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return CatchException(ex);
-        //    }
-        //}
+        [HttpGet("Codes/{code}")]
+        public IActionResult CheckDuplicatedCode(string code)
+        {
+            try
+            {
+                var res = _baseServices.CheckDuplicatedCodeData(code);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return CatchException(ex);
+            }
+        }
 
         #endregion
     }

@@ -74,5 +74,15 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services
         /// A model of ControllerResponseData
         /// </returns>
         public ControllerResponseData DeleteData(int entityId);
+
+        /// <summary>
+        /// @author: VQPhong (08/08/2022)
+        /// @desc: Control response data from Repo for Checking duplicated code
+        /// </summary>
+        /// <param name="code">The code needs to be checked</param>
+        /// <returns>
+        /// A model of ControllerResponseData
+        /// </returns>
+        public ControllerResponseData CheckDuplicatedCodeData(string code);
     }
 }

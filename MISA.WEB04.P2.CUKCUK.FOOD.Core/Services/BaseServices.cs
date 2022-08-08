@@ -221,6 +221,27 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             return res;
         }
 
+        /// <summary>
+        /// @author: VQPhong (08/08/2022)
+        /// @desc: Control response data from Repo for Checking duplicated code
+        /// </summary>
+        /// <param name="code">The code needs to be checked</param>
+        /// <returns>
+        /// A model of ControllerResponseData
+        /// </returns>
+        public ControllerResponseData CheckDuplicatedCodeData(string code)
+        {
+            bool isDuplicated = _baseRepository.CheckDuplicatedCode(code);
+
+            var res = new ControllerResponseData
+            {
+                customStatusCode = (int?)(Core.Enum.CustomizeStatusCode.GetOkay),
+                responseData = isDuplicated,
+            };
+
+            return res;
+        }
+
         #endregion
 
         #region Support Methods

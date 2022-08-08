@@ -26,12 +26,12 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// </returns>
         public IEnumerable<FavorService> GetByFoodId(int foodId)
         {
+            // Create dynamic parameters
+            DynamicParams = new DynamicParameters();
+            DynamicParams.Add("@$FoodID", foodId);
+
             using (SqlConnection = ConnectDatabase())
             {
-                // Create dynamic parameters
-                DynamicParams = new DynamicParameters();
-                DynamicParams.Add("@$FoodID", foodId);
-
                 // Query data in database
                 var sqlQuery = "Proc_GetFavorServiceByFoodID";
 

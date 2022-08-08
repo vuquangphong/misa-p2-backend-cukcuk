@@ -109,15 +109,15 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// </returns>
         public T GetById(int entityId)
         {
+            // Create dynamic parameters
+            DynamicParams = new DynamicParameters();
+            DynamicParams.Add($"@${_entityName}ID", entityId);
+
+            // Query data in database
+            var sqlQuery = $"Proc_Get{_entityName}ByID";
+
             using (SqlConnection = ConnectDatabase())
             {
-                // Create dynamic parameters
-                DynamicParams = new DynamicParameters();
-                DynamicParams.Add($"@${_entityName}ID", entityId);
-
-                // Query data in database
-                var sqlQuery = $"Proc_Get{_entityName}ByID";
-
                 var entity = SqlConnection.QueryFirstOrDefault<T>(
                     sqlQuery,
                     param: DynamicParams,
@@ -270,12 +270,12 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// </returns>
         public int DeleteById(int entityId)
         {
+            // Create dynamic parameters
+            DynamicParams = new DynamicParameters();
+            DynamicParams.Add($"@${_entityName}ID", entityId);
+
             using (SqlConnection = ConnectDatabase())
             {
-                // Create dynamic parameters
-                DynamicParams = new DynamicParameters();
-                DynamicParams.Add($"@${_entityName}ID", entityId);
-
                 // Query data in Database
                 var sqlQuery = $"Proc_Delete{_entityName}ByID";
                 var rowsEffect = SqlConnection.Execute(
@@ -427,6 +427,35 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// @author: VQPhong (08/08/2022)
+        /// Check if the current code is duplicated
+        /// </summary>
+        /// <param name="code">The code needs to be checked duplicated</param>
+        /// <returns>
+        /// True --> Duplicated
+        /// False --> Not Duplicated
+        /// </returns>
+        public bool CheckDuplicatedCode(string code)
+        {
+            // Create dynamic parameters
+            DynamicParams = new DynamicParameters();
+            DynamicParams.Add($"@{_entityName}Code", code);
+
+            // SQL query
+            var sqlQuery = $"SELECT {_entityName}Code FROM {_entityName} WHERE {_entityName}Code = @{_entityName}Code";
+
+            // Connect Database
+            using(SqlConnection = ConnectDatabase())
+            {
+                var isExist = SqlConnection.QueryFirstOrDefault(sqlQuery, param: DynamicParams);
+
+                if (isExist != null) return true;
+
+                return false;
+            }
         }
 
         #endregion

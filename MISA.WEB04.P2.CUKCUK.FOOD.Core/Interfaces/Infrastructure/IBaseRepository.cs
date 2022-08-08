@@ -96,5 +96,16 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// Null if not exist
         /// </returns>
         public string? CheckDuplicatedCombo(T entity);
+
+        /// <summary>
+        /// @author: VQPhong (08/08/2022)
+        /// Check if the current code is duplicated
+        /// </summary>
+        /// <param name="code">The code needs to be checked duplicated</param>
+        /// <returns>
+        /// True --> Duplicated
+        /// False --> Not Duplicated
+        /// </returns>
+        public bool CheckDuplicatedCode(string code);
     }
 }
