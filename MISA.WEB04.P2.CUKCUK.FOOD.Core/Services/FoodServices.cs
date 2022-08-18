@@ -45,35 +45,8 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
         {
             // Validate data from request
             // 1. Validate Food
-            var emptyFoodValidation = this.EmptyValidation(food);
-
-            if (emptyFoodValidation != null)
-            {
-                return new ControllerResponseData
-                {
-                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
-                    responseData = new
-                    {
-                        devMsg = emptyFoodValidation,
-                        userMsg = emptyFoodValidation,
-                    }
-                };
-            }
-
-            var duplicatedFoodValidation = _foodRepository.CheckDuplicatedProp(food, null);
-
-            if (duplicatedFoodValidation != null)
-            {
-                return new ControllerResponseData
-                {
-                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
-                    responseData = new
-                    {
-                        devMsg = duplicatedFoodValidation,
-                        userMsg = duplicatedFoodValidation,
-                    }
-                };
-            }
+            var foodValidation = this.ValidateFood(food, null);
+            if (foodValidation != null) return foodValidation;
 
             // 2.Validate FavorService
             List<FavorService> finalFavorService = new();
@@ -83,43 +56,10 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
                 // Ignore FSs that are empty
                 finalFavorService = FavorServiceServices.FilterEmptyFavorService(favorServices);
 
-                // Check if list of FS contains items that has no Content but Surcharge
-                if (FavorServiceServices.IsNoContentFavorService(finalFavorService))
-                {
-                    return new ControllerResponseData
-                    {
-                        customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
-                        responseData = new
-                        {
-                            devMsg = Core.Resourses.VI_Resource.NoContentFS,
-                            userMsg = Core.Resourses.VI_Resource.NoContentFS
-                        }
-                    };
-                }
-
-                // Check if any FS is duplicated in the list
-                var listDuplicated = FavorServiceServices.CheckDuplicatedInList(finalFavorService);
-                if (listDuplicated.Any())
-                {
-                    StringBuilder contentAlert = new();
-                    string delimiter = "";
-
-                    foreach (var item in listDuplicated)
-                    {
-                        contentAlert.Append($"{delimiter}{item}");
-                        delimiter = ", ";
-                    }
-
-                    return new ControllerResponseData
-                    {
-                        customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
-                        responseData = new
-                        {
-                            devMsg = String.Format(Core.Resourses.VI_Resource.NotDuplicatedCombo, Core.Resourses.VI_Resource.DisplayNameFS, contentAlert),
-                            userMsg = String.Format(Core.Resourses.VI_Resource.NotDuplicatedCombo, Core.Resourses.VI_Resource.DisplayNameFS, contentAlert)
-                        }
-                    };
-                }
+                // 1. Check if list of FS contains items that has no Content but Surcharge
+                // 2. Check if any FS is duplicated in the list
+                var fsValidation = this.ValidateFavorService(finalFavorService);
+                if (fsValidation != null) return fsValidation;
 
                 // Assign ID (ID as a state of favorite service)
                 finalFavorService = _favorServiceServices.AssignOrRemoveIdForFS(finalFavorService);
@@ -146,86 +86,25 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
         {
             // Validate data from request
             // 1. Validate Food
-            var emptyFoodValidation = this.EmptyValidation(food);
-
-            if (emptyFoodValidation != null)
-            {
-                return new ControllerResponseData
-                {
-                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
-                    responseData = new
-                    {
-                        devMsg = emptyFoodValidation,
-                        userMsg = emptyFoodValidation,
-                    }
-                };
-            }
-
-            var duplicatedFoodValidation = _foodRepository.CheckDuplicatedProp(food, foodId);
-
-            if (duplicatedFoodValidation != null)
-            {
-                return new ControllerResponseData
-                {
-                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
-                    responseData = new
-                    {
-                        devMsg = duplicatedFoodValidation,
-                        userMsg = duplicatedFoodValidation,
-                    }
-                };
-            }
+            var foodValidation = this.ValidateFood(food, foodId);
+            if (foodValidation != null) return foodValidation;
 
             // 2.Validate FavorService
             List<FavorService> finalFavorService = new();
-            List<int> delFavorServiceIds = new();
 
             if (favorServices != null && favorServices.Any())
             {
                 // Ignore FSs that are empty
                 finalFavorService = FavorServiceServices.FilterEmptyFavorService(favorServices);
 
-                // Check if list of FS contains items that has no Content but Surcharge
-                if (FavorServiceServices.IsNoContentFavorService(finalFavorService))
-                {
-                    return new ControllerResponseData
-                    {
-                        customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
-                        responseData = new
-                        {
-                            devMsg = Core.Resourses.VI_Resource.NoContentFS,
-                            userMsg = Core.Resourses.VI_Resource.NoContentFS
-                        }
-                    };
-                }
-
-                // Check if any FS is duplicated in the list
-                var listDuplicated = FavorServiceServices.CheckDuplicatedInList(finalFavorService);
-                if (listDuplicated.Any())
-                {
-                    StringBuilder contentAlert = new();
-                    string delimiter = "";
-
-                    foreach (var item in listDuplicated)
-                    {
-                        contentAlert.Append($"{delimiter}{item}");
-                        delimiter = ", ";
-                    }
-
-                    return new ControllerResponseData
-                    {
-                        customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
-                        responseData = new
-                        {
-                            devMsg = String.Format(Core.Resourses.VI_Resource.NotDuplicatedCombo, Core.Resourses.VI_Resource.DisplayNameFS, contentAlert),
-                            userMsg = String.Format(Core.Resourses.VI_Resource.NotDuplicatedCombo, Core.Resourses.VI_Resource.DisplayNameFS, contentAlert)
-                        }
-                    };
-                }
+                // 1. Check if list of FS contains items that has no Content but Surcharge
+                // 2. Check if any FS is duplicated in the list
+                var fsValidation = this.ValidateFavorService(finalFavorService);
+                if (fsValidation != null) return fsValidation;
             }
 
             // Create List of FS_IDs that need to be remove from Intermediate table
-            delFavorServiceIds = _favorServiceServices.CreateListDelFavorServiceIds(finalFavorService, foodId);
+            List<int> delFavorServiceIds = _favorServiceServices.CreateListDelFavorServiceIds(finalFavorService, foodId);
 
             if (finalFavorService.Any())
             {
@@ -262,6 +141,109 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
         //    truyền transaction vào
 
         //}
+
+        #endregion
+
+        #region Support method
+
+        /// <summary>
+        /// @author: VQPhong (18/08/2022)
+        /// @desc: Method for validation of Food
+        /// </summary>
+        /// <param name="food">Food model need to be validated</param>
+        /// <param name="foodId">ID of Food model</param>
+        /// <returns>
+        /// A object of ControllerResponseData <--> Validate failed
+        /// Null <--> Validate success
+        /// </returns>
+        private ControllerResponseData? ValidateFood(Food food, int? foodId)
+        {
+            // 1. Check if Food contains empty fields that are not allow to be empty
+            var emptyFoodValidation = this.EmptyValidation(food);
+
+            if (emptyFoodValidation != null)
+            {
+                return new ControllerResponseData
+                {
+                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
+                    responseData = new
+                    {
+                        devMsg = emptyFoodValidation,
+                        userMsg = emptyFoodValidation,
+                    }
+                };
+            }
+
+            // 2. Check if Food contains unique fields that coincides with Database
+            var duplicatedFoodValidation = _foodRepository.CheckDuplicatedProp(food, foodId);
+
+            if (duplicatedFoodValidation != null)
+            {
+                return new ControllerResponseData
+                {
+                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
+                    responseData = new
+                    {
+                        devMsg = duplicatedFoodValidation,
+                        userMsg = duplicatedFoodValidation,
+                    }
+                };
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// @author: VQPhong (18/08/2022)
+        /// @desc: Method for validation of List of FavorService
+        /// </summary>
+        /// <param name="favorServices">List of FavorService needs to be validated</param>
+        /// <returns>
+        /// A object of ControllerResponseData <--> Validate failed
+        /// Null <--> Validate success
+        /// </returns>
+        private ControllerResponseData? ValidateFavorService(List<FavorService> favorServices)
+        {
+            // 1. Check if list of FS contains items that has no Content but Surcharge
+            if (FavorServiceServices.IsNoContentFavorService(favorServices))
+            {
+                return new ControllerResponseData
+                {
+                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
+                    responseData = new
+                    {
+                        devMsg = Core.Resourses.VI_Resource.NoContentFS,
+                        userMsg = Core.Resourses.VI_Resource.NoContentFS
+                    }
+                };
+            }
+
+            // 2. Check if any FS is duplicated in the list
+            var listDuplicated = FavorServiceServices.CheckDuplicatedInList(favorServices);
+            if (listDuplicated.Any())
+            {
+                StringBuilder contentAlert = new();
+                string delimiter = "";
+
+                foreach (var item in listDuplicated)
+                {
+                    contentAlert.Append($"{delimiter}{item}");
+                    delimiter = ", ";
+                }
+
+                return new ControllerResponseData
+                {
+                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.BadRequest,
+                    responseData = new
+                    {
+                        devMsg = String.Format(Core.Resourses.VI_Resource.NotDuplicatedCombo, Core.Resourses.VI_Resource.DisplayNameFS, contentAlert),
+                        userMsg = String.Format(Core.Resourses.VI_Resource.NotDuplicatedCombo, Core.Resourses.VI_Resource.DisplayNameFS, contentAlert)
+                    }
+                };
+            }
+
+            return null;
+        }
 
         #endregion
     }
