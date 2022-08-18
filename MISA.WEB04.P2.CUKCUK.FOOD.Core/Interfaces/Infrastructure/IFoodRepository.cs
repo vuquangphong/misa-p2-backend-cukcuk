@@ -1,4 +1,5 @@
 ﻿using MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities;
+using MISA.WEB04.P2.CUKCUK.FOOD.Core.OtherModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
 {
+    /// <summary>
+    /// @author: VQPhong (10/08/2022)
+    /// @desc: Interface of Food repository
+    /// </summary>
     public interface IFoodRepository : IBaseRepository<Food>
     {
         /// <summary>
@@ -16,9 +21,9 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <param name="food">The Food needs to be inserted</param>
         /// <param name="favorServices">List of Favorite services need to be inserted</param>
         /// <returns>
-        /// Number of rows affected
+        /// A model of ControllerResponseData
         /// </returns>
-        public int InsertFullFood(Food food, IEnumerable<FavorService>? favorServices);
+        public ControllerResponseData InsertFullFood(Food food, List<FavorService> favorServices);
 
         /// <summary>
         /// @author: VQPhong (01/08/2022)
@@ -29,8 +34,8 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <param name="favorServices">List of favorite services need to be inserted or not</param>
         /// <param name="delFavorServiceIds">List of IDs of favorite services need to be removed in the FoodFavorService</param>
         /// <returns>
-        /// The number of rows affected
+        /// A model of ControllerResponseData
         /// </returns>
-        public int UpdateFullFoodById(Food food, int foodId, IEnumerable<FavorService>? favorServices, IEnumerable<int>? delFavorServiceIds);
+        public ControllerResponseData UpdateFullFoodById(Food food, int foodId, List<FavorService> favorServices, List<int> delFavorServiceIds);
     }
 }

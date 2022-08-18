@@ -13,6 +13,11 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
 {
+    /// <summary>
+    /// @author: VQPhong (10/08/2022)
+    /// @desc: Implementation of Base Repo interface
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class BaseRepository<T> : IBaseRepository<T>
     {
         #region Some properties & Constructor

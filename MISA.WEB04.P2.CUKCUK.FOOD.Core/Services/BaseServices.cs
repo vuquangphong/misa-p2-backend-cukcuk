@@ -10,6 +10,11 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
 {
+    /// <summary>
+    /// @author: VQPhong (10/08/2022)
+    /// @desc: Implementation of Base Service interface
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class BaseServices<T> : IBaseServices<T>
     {
         #region Dependency Injection

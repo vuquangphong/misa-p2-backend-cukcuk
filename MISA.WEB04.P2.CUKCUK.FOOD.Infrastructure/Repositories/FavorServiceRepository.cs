@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
 {
+    /// <summary>
+    /// @author: VQPhong (10/08/2022)
+    /// @desc: Implementation of FavorService Repo interface
+    /// </summary>
     public class FavorServiceRepository : BaseRepository<FavorService>, IFavorServiceRepository
     {
         public FavorServiceRepository(IConfiguration configuration) : base(configuration)

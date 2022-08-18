@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
 {
+    /// <summary>
+    /// @author: VQPhong (10/08/2022)
+    /// @desc: Implementation of Food Unit Service interface
+    /// </summary>
     public class FoodUnitServices : BaseServices<FoodUnit>, IFoodUnitServices
     {
         private readonly IFoodUnitRepository _foodUnitRepository;

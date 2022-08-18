@@ -18,6 +18,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Enum
         Deleted = 13,
         NoContent = 14,
         BadRequest = 40,
+        TransactionException = 50,
         NormalException = 55,
     }
 
@@ -29,5 +30,27 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Enum
     {
         Appear = 0,
         NotApear = 1,
+    }
+
+    /// <summary>
+    /// @author: VQPhong (08/08/2022)
+    /// @desc: Enum for the result of Inserting and Updating
+    /// Success <=> 1
+    /// Failure <=> 0
+    /// </summary>
+    public enum InsertUpdateResult
+    {
+        Failure = 0,
+        Success = 1,
+    }
+
+    /// <summary>
+    /// @author: VQPhong (16/08/2022)
+    /// @desc: Enum for mode action (Insert - Update)
+    /// </summary>
+    public enum ModeAction
+    {
+        Insert = 0,
+        Update = 1,
     }
 }

@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DisplayNameFS" xml:space="preserve">
+    <value>Sở thích phục vụ</value>
+  </data>
+  <data name="NoContentFS" xml:space="preserve">
+    <value>Sở thích phục vụ không được để trống khi có thu thêm. Vui lòng kiểm tra lại.</value>
+  </data>
   <data name="NotDuplicatedCombo" xml:space="preserve">
     <value>{0} &lt;{1}&gt; đã bị trùng. Vui lòng kiểm tra lại. </value>
   </data>

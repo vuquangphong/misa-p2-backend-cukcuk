@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services
 {
+    /// <summary>
+    /// @author: VQPhong (10/08/2022)
+    /// @desc: Interface of Food FavorService (intermediate model) Service
+    /// </summary>
     public interface IFoodFavorServiceServices : IBaseServices<FoodFavorService>
     {
     }

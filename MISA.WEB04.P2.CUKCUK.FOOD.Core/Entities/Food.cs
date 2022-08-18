@@ -13,72 +13,102 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
     /// </summary>
     public class Food
     {
-        // Primary Key
+        /// <summary>
+        /// Primary Key
+        /// </summary>
         [PrimaryKey]
         public int? FoodID { get; set; }
 
-        // Code of food
+        /// <summary>
+        /// Code of food
+        /// </summary>
         [NotEmpty, NotDuplicated, PropsName("Mã món")]
         public string? FoodCode { get; set; }
 
-        // Name of food
+        /// <summary>
+        /// Name of food
+        /// </summary>
         [NotEmpty, PropsName("Tên món")]
         public string? FoodName { get; set; }
 
-        // The foreign key
-        // The group ID of food
+        /// <summary>
+        /// The foreign key
+        /// The group ID of food
+        /// </summary>
         public int? FoodGroupID { get; set; }
 
-        // The group name of food
+        /// <summary>
+        /// The group name of food
+        /// </summary>
         public string? FoodGroupName { get; set; }
 
-        // The foreign key
-        // The unit ID of food
+        /// <summary>
+        /// The foreign key
+        /// The unit ID of food
+        /// </summary>
         [NotEmpty, PropsName("Đơn vị tính")]
         public int? FoodUnitID { get; set; }
 
-        // The unit name of food
+        /// <summary>
+        /// The unit name of food
+        /// </summary>
         public string? FoodUnitName { get; set; }
 
-        // The price of food
+        /// <summary>
+        /// The price of food
+        /// </summary>
         [NotEmpty, PropsName("Giá bán")]
         public double? FoodPrice { get; set; }
 
-        // The init cost of food
+        /// <summary>
+        /// The init cost of food
+        /// </summary>
         public double? FoodInvest { get; set; }
 
-        // The description of food
+        /// <summary>
+        /// The description of food
+        /// </summary>
         public string? Description { get; set; }
 
-        // The foreign key
-        // The ID of place where the food is prepared
+        /// <summary>
+        /// The foreign key
+        /// The ID of place where the food is prepared
+        /// </summary>
         public int? FoodPlaceID { get; set; }
 
-        // The name of place where the food is prepared
+        /// <summary>
+        /// The name of place where the food is prepared
+        /// </summary>
         public string? FoodPlaceName { get; set; }
 
-        // Food shows up on the menu or not
-        // Null/0 --> yes
-        // Otherwise --> no
+        /// <summary>
+        /// Food shows up on the menu or not
+        /// Null/0 --> yes
+        /// Otherwise --> no
+        /// </summary>
         public AppearOnMenu? Appear { get; set; }
 
-        // The link mapping to the illustration of food
+        /// <summary>
+        /// The link mapping to the illustration of food
+        /// </summary>
         public string? Avatar { get; set; }
 
-        // Date of record creation
+        /// <summary>
+        /// Date of record creation
+        /// </summary>
         [NotUsageParams]
         public DateTime? CreatedDate { get; set; }
 
-        // Date of record modification
+        /// <summary>
+        /// Date of record modification
+        /// </summary>
         [NotUsageParams]
         public DateTime? ModifiedDate { get; set; }
 
-        // List of FavorService of the Food
+        /// <summary>
+        /// List of FavorService of the Food
+        /// </summary>
         [NotUsageParams]
-        public IEnumerable<FavorService>? FavorServices { get; set; }
-
-        // List of FavorServiceIDs which need to be removed
-        [NotUsageParams]
-        public IEnumerable<int>? DelFavorServiceIds { get; set; }
+        public List<FavorService>? FavorServices { get; set; }
     }
 }

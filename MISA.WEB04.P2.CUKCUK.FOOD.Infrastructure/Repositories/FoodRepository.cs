@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities;
 using MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure;
+using MISA.WEB04.P2.CUKCUK.FOOD.Core.OtherModels;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,10 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
 {
+    /// <summary>
+    /// @author: VQPhong (10/08/2022)
+    /// @desc: Implementation of Food Repo interface
+    /// </summary>
     public class FoodRepository : BaseRepository<Food>, IFoodRepository
     {
         // Some properties
@@ -34,7 +39,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// <returns>
         /// Number of rows affected
         /// </returns>
-        public int InsertFullFood(Food food, IEnumerable<FavorService>? favorServices)
+        public ControllerResponseData InsertFullFood(Food food, List<FavorService> favorServices)
         {
             using (SqlConnection = ConnectDatabase())
             {
@@ -68,7 +73,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
                     PropertyInfo[] favorProps;
                     int newFavorServiceID;
 
-                    if (favorServices != null && favorServices.Any())
+                    if (favorServices.Any())
                     {
                         foreach (FavorService favorService in favorServices)
                         {
@@ -116,9 +121,14 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
                         }
                     }
 
+                    // Everything is Okay
+                    // Commit transaction and return success
                     transaction.Commit();
-                    return 1;
-
+                    return new ControllerResponseData
+                    {
+                        customStatusCode = (int?)Core.Enum.CustomizeStatusCode.Created,
+                        responseData = Core.Enum.InsertUpdateResult.Success,
+                    };
                 }
                 catch (Exception ex)
                 {
@@ -127,8 +137,20 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
                     // Actually I do not want to throw Exception like below
                     // because I know that it waste resourse of server...
                     // But... anyway, I have not yet found other solutions
-                    // Thus, I choose this way!
-                    throw new Exception(ex.Message);
+                    // Thus, I choose this way! (03/08/2022)
+                    //throw new Exception(ex.Message);
+
+                    // (08/08/2022)
+                    // Okay I think that I will use this way
+                    return new ControllerResponseData
+                    {
+                        customStatusCode = (int?)Core.Enum.CustomizeStatusCode.TransactionException,
+                        responseData = new
+                        {
+                            devMsg = ex.Message,
+                            userMsg = Core.Resourses.VI_Resource.UserMsgServerError,
+                        }
+                    };
                 }
                 finally
                 {
@@ -148,7 +170,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// <returns>
         /// The number of rows affected
         /// </returns>
-        public int UpdateFullFoodById(Food food, int foodId, IEnumerable<FavorService>? favorServices, IEnumerable<int>? delFavorServiceIds)
+        public ControllerResponseData UpdateFullFoodById(Food food, int foodId, List<FavorService> favorServices, List<int> delFavorServiceIds)
         {
             using (SqlConnection = ConnectDatabase())
             {
@@ -167,7 +189,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
 
                     _foodParams.Add("@$FoodID", foodId);
 
-                    var test = SqlConnection.Execute(
+                    SqlConnection.Execute(
                         "Proc_UpdateFood",
                         param: _foodParams,
                         transaction: transaction,
@@ -176,7 +198,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
 
                     // Handling favorite service and intermediate records
                     // 1. Create some new FavorService (if necessary) and create (intermediate) FoodFavorService records
-                    if (favorServices != null && favorServices.Any())
+                    if (favorServices.Any())
                     {
                         _favorServiceParams = new DynamicParameters();
                         _foodFavorServiceParams = new DynamicParameters();
@@ -234,7 +256,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
                     }
 
                     // 2. Remove some (intermediate) FoodFavorService records
-                    if (delFavorServiceIds != null && delFavorServiceIds.Any())
+                    if (delFavorServiceIds.Any())
                     {
                         _foodFavorServiceParams = new DynamicParameters();
 
@@ -253,13 +275,28 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
                         SqlConnection.Execute(sqlQuery, param: _foodFavorServiceParams, transaction: transaction);
                     }
 
+                    // Everything is Okay
+                    // Commit transaction and return success
                     transaction.Commit();
-                    return 1;
+                    return new ControllerResponseData
+                    {
+                        customStatusCode = (int?)Core.Enum.CustomizeStatusCode.Created,
+                        responseData = Core.Enum.InsertUpdateResult.Success,
+                    };
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    throw new Exception(ex.Message);
+
+                    return new ControllerResponseData
+                    {
+                        customStatusCode = (int?)Core.Enum.CustomizeStatusCode.TransactionException,
+                        responseData = new
+                        {
+                            devMsg = ex.Message,
+                            userMsg = Core.Resourses.VI_Resource.UserMsgServerError,
+                        }
+                    };
                 }
                 finally
                 {

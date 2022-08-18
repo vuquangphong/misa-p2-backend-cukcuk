@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services
 {
+    /// <summary>
+    /// @author: VQPhong (10/08/2022)
+    /// @desc: Interface of Food Service
+    /// </summary>
     public interface IFoodServices : IBaseServices<Food>
     {
         /// <summary>
@@ -19,7 +23,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services
         /// <returns>
         /// A model of ControllerResponseData
         /// </returns>
-        public ControllerResponseData InsertFullFoodData(Food food, IEnumerable<FavorService>? favorServices);
+        public ControllerResponseData InsertFullFoodData(Food food, List<FavorService>? favorServices);
 
         /// <summary>
         /// @author: VQPhong (01/08/2022)
@@ -28,10 +32,9 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services
         /// <param name="food">Food needs to be updated</param>
         /// <param name="foodId">The ID of the food</param>
         /// <param name="favorServices">List of favorite services need to be inserted or not</param>
-        /// <param name="delFavorServiceIds">List of IDs of favorite services need to be removed in the FoodFavorService</param>
         /// <returns>
         /// A model of ControllerResponseData
         /// </returns>
-        public ControllerResponseData UpdateFullFoodData(Food food, int foodId, IEnumerable<FavorService>? favorServices, IEnumerable<int>? delFavorServiceIds);
+        public ControllerResponseData UpdateFullFoodData(Food food, int foodId, List<FavorService>? favorServices);
     }
 }

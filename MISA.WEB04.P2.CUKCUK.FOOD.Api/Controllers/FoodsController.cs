@@ -67,7 +67,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Api.Controllers
         {
             try
             {
-                var res = _foodServices.UpdateFullFoodData(food, foodId, food.FavorServices, food.DelFavorServiceIds);
+                var res = _foodServices.UpdateFullFoodData(food, foodId, food.FavorServices);
                 return Ok(res);
             }
             catch (Exception ex)

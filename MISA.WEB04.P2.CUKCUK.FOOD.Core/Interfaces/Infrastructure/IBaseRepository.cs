@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
 {
+    /// <summary>
+    /// @author: VQPhong (10/08/2022)
+    /// @desc: Base interface of all models
+    /// </summary>
+    /// <typeparam name="T">T as a type of model</typeparam>
     public interface IBaseRepository<T>
     {
         /// <summary>

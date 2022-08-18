@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.OtherModels
 {
+    /// <summary>
+    /// @author: VQPhong (10/08/2022)
+    /// @desc: Model for response data of API
+    /// </summary>
     public class ControllerResponseData
     {
-        // The custom status code of response
+        /// <summary>
+        /// The custom status code of response
+        /// </summary>
         public int? customStatusCode;
 
-        // The data response
+        /// <summary>
+        /// The data response
+        /// </summary>
         public object? responseData;
     }
 }

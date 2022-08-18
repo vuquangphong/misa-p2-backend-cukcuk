@@ -12,20 +12,28 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
     /// </summary>
     public class FavorService
     {
-        // Primary Key
-        // PropsName which tagged with Primary Key is the name of entity
+        /// <summary>
+        /// Primary Key
+        /// PropsName which tagged with Primary Key is the name of entity
+        /// </summary>
         [PrimaryKey, PropsName("Sở thích phục vụ")]
         public int? FavorServiceID { get; set; }
 
-        // The content of serving preferences
+        /// <summary>
+        /// The content of serving preferences
+        /// </summary>
         [NotEmpty, PropsName("Nội dung sở thích"), NotDuplicatedCombo]
         public string? Content { get; set; }
 
-        // The extra charge for the services
+        /// <summary>
+        /// The extra charge for the services
+        /// </summary>
         [NotEmpty, PropsName("Phí thu thêm"), NotDuplicatedCombo]
         public double? Surcharge { get; set; }
 
-        // The Date of record creation
+        /// <summary>
+        /// The Date of record creation
+        /// </summary>
         public DateTime? CreatedDate { get; set; }
     }
 }

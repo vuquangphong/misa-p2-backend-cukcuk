@@ -12,22 +12,32 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
     /// </summary>
     public class FoodGroup
     {
-        // Primary Key
+        /// <summary>
+        /// Primary Key
+        /// </summary>
         [PrimaryKey]
         public int? FoodGroupID { get; set; }
 
-        // Code of group food
+        /// <summary>
+        /// Code of group food
+        /// </summary>
         [NotEmpty, NotDuplicated, PropsName("Mã nhóm thức ăn")]
         public string? FoodGroupCode { get; set; }
 
-        // Name of the group food
+        /// <summary>
+        /// Name of the group food
+        /// </summary>
         [NotEmpty, PropsName("Tên nhóm thức ăn")]
         public string? FoodGroupName { get; set; }
 
-        // The description of group food
+        /// <summary>
+        /// The description of group food
+        /// </summary>
         public string? Description { get; set; }
 
-        // The Date of record creation
+        /// <summary>
+        /// The Date of record creation
+        /// </summary>
         public DateTime? CreatedDate { get; set; }
     }
 }

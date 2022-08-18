@@ -12,15 +12,21 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities
     /// </summary>
     public class FoodFavorService
     {
-        // The primary key mapping to Food entity
+        /// <summary>
+        /// The primary key mapping to Food entity
+        /// </summary>
         [PrimaryKey, NotEmpty, PropsName("FoodID")]
         public int? FoodID { get; set; }
 
-        // The primary key mapping to FavorService entity
+        /// <summary>
+        /// The primary key mapping to FavorService entity
+        /// </summary>
         [PrimaryKey, NotEmpty, PropsName("FavorServiceID")]
         public int? FavorServiceID { get; set; }
 
-        // The Date of record creation
+        /// <summary>
+        /// The Date of record creation
+        /// </summary>
         public DateTime? CreatedDate { get; set; }
     }
 }

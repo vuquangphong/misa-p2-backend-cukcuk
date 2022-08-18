@@ -61,6 +61,24 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Resourses {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sở thích phục vụ.
+        /// </summary>
+        public static string DisplayNameFS {
+            get {
+                return ResourceManager.GetString("DisplayNameFS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sở thích phục vụ không được để trống khi có thu thêm. Vui lòng kiểm tra lại..
+        /// </summary>
+        public static string NoContentFS {
+            get {
+                return ResourceManager.GetString("NoContentFS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} &lt;{1}&gt; đã bị trùng. Vui lòng kiểm tra lại. .
         /// </summary>
         public static string NotDuplicatedCombo {

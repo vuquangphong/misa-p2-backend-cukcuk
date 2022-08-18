@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services
 {
+    /// <summary>
+    /// @author: VQPhong (10/08/2022)
+    /// @desc: Interface of FavorService Service
+    /// </summary>
     public interface IFavorServiceServices : IBaseServices<FavorService>
     {
         /// <summary>
@@ -27,5 +31,36 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services
         /// A model of ControllerResponseData
         /// </returns>
         public new ControllerResponseData InsertData(FavorService favorService);
+
+        /// <summary>
+        /// @author: VQPhong (15/08/2022)
+        /// @desc: Ignoring all FS that belongs to old list of FS
+        /// </summary>
+        /// <param name="newFavorServices">List of new FS</param>
+        /// <param name="foodId">The ID of food for getting list of old FS</param>
+        /// <returns>
+        /// List of new FS that is totally new
+        /// </returns>
+        public List<FavorService> IgnoreOldFSForUpdate(List<FavorService> newFavorServices, int foodId);
+
+        /// <summary>
+        /// @author: VQPhong (15/08/2022)
+        /// @desc: Assign ID for FS that already exists in Database
+        /// Remove ID (Assign ID = 0) for FS that does not exist yet
+        /// </summary>
+        /// <param name="favorServices">List of FS</param>
+        /// <returns>
+        /// A list of FS that has correct value of IDs
+        /// </returns>
+        public List<FavorService> AssignOrRemoveIdForFS(List<FavorService> favorServices);
+
+        /// <summary>
+        /// @author: VQPhong (15/08/2022)
+        /// @desc: Create list of FavorServiceIDs that need to be remove from intermediate table
+        /// </summary>
+        /// <param name="newFavorServices">List of new FS</param>
+        /// <param name="foodId">The ID of food for getting list of old FS</param>
+        /// <returns></returns>
+        public List<int> CreateListDelFavorServiceIds(List<FavorService> newFavorServices, int foodId);
     }
 }
