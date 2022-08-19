@@ -24,6 +24,6 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// Number of rows affected
         /// </returns>
-        public int InsertMultiFFSs(int foodId, List<int> favorServiceIds, MySqlConnection sqlConnection, MySqlTransaction transaction);
+        public int InsertMultiFFSs(int foodId, List<int> favorServiceIds, MySqlTransaction transaction);
     }
 }

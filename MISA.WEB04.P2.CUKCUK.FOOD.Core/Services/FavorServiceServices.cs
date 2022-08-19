@@ -92,12 +92,12 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             }
 
             // Everything is OKAY
-            int rowsEffect = _favorServiceRepository.Insert(favorService);
+            int newId = _favorServiceRepository.Insert(favorService, null);
 
             var res = new ControllerResponseData
             {
-                customStatusCode = (int?)(rowsEffect > 0 ? Core.Enum.CustomizeStatusCode.Created : Core.Enum.CustomizeStatusCode.NoContent),
-                responseData = rowsEffect,
+                customStatusCode = (int?)(Core.Enum.CustomizeStatusCode.Created),
+                responseData = newId,
             };
 
             return res;

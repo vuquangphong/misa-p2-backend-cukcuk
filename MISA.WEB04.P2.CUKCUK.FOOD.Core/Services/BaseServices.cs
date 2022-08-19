@@ -140,12 +140,12 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             }
 
             // Everything is Okay
-            int rowsEffect = _baseRepository.Insert(entity);
+            int newId = _baseRepository.Insert(entity, null);
 
             var res = new ControllerResponseData
             {
-                customStatusCode = (int?)(rowsEffect > 0 ? Core.Enum.CustomizeStatusCode.Created : Core.Enum.CustomizeStatusCode.NoContent),
-                responseData = rowsEffect,
+                customStatusCode = (int?)(Core.Enum.CustomizeStatusCode.Created),
+                responseData = newId,
             };
 
             return res;
@@ -194,11 +194,11 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             }
 
             // Everything is Okay
-            int rowsEffect = _baseRepository.UpdateById(entity, entityId);
+            int rowsEffect = _baseRepository.UpdateById(entity, entityId, null);
 
             var res = new ControllerResponseData
             {
-                customStatusCode = (int?)(rowsEffect > 0 ? Core.Enum.CustomizeStatusCode.Updated : Core.Enum.CustomizeStatusCode.NoContent),
+                customStatusCode = (int?)(Core.Enum.CustomizeStatusCode.Updated),
                 responseData = rowsEffect,
             };
 

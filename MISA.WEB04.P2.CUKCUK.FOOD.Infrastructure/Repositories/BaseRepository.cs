@@ -193,7 +193,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// <returns>
         /// NewID
         /// </returns>
-        public int Insert(T entity)
+        public int Insert(T entity, MySqlTransaction? transaction)
         {
             // Create dynamic parameters
             DynamicParams = new DynamicParameters();
@@ -211,16 +211,33 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
 
             var sqlQuery = $"Proc_Create{_entityName}";
 
-            using (SqlConnection = ConnectDatabase())
+            if (transaction != null)
             {
-                var newId = SqlConnection.QueryFirstOrDefault<int>(
+                var sqlConnection = transaction.Connection;
+
+                var newId = sqlConnection.QueryFirstOrDefault<int>(
                     sqlQuery,
                     param: DynamicParams,
+                    transaction: transaction,
                     commandType: CommandType.StoredProcedure
                 );
 
                 return newId;
             }
+            else
+            {
+                using (SqlConnection = ConnectDatabase())
+                {
+                    var newId = SqlConnection.QueryFirstOrDefault<int>(
+                        sqlQuery,
+                        param: DynamicParams,
+                        commandType: CommandType.StoredProcedure
+                    );
+
+                    return newId;
+                }
+            }
+            
         }
 
         /// <summary>
@@ -230,19 +247,19 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// <param name="entity">Entity needs to be updated</param>
         /// <param name="entityId">The ID of the entity</param>
         /// <returns>
-        /// Number of rows that are affected
+        /// entityId
         /// </returns>
-        public int UpdateById(T entity, int entityId)
+        public int UpdateById(T entity, int entityId, MySqlTransaction? transaction)
         {
             // Create dynamic parameters
             DynamicParams = new DynamicParameters();
-            DynamicParams.Add($"@${_entityName}ID", entityId);
 
             var properties = entity?.GetType().GetProperties();
 
             if (properties != null)
             {
                 AddEntityToDynamicParams(entity, properties, DynamicParams);
+                DynamicParams.Add($"@${_entityName}ID", entityId);
             }
             else
             {
@@ -252,15 +269,31 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
             // Query data in database
             var sqlQuery = $"Proc_Update{_entityName}";
 
-            using (SqlConnection = ConnectDatabase())
+            if (transaction != null)
             {
-                var rowsEffect = SqlConnection.Execute(
+                var sqlConnection = transaction.Connection;
+
+                var rowsEffect = sqlConnection.Execute(
                     sqlQuery,
                     param: DynamicParams,
+                    transaction: transaction,
                     commandType: CommandType.StoredProcedure
                 );
 
                 return rowsEffect;
+            }
+            else
+            {
+                using (SqlConnection = ConnectDatabase())
+                {
+                    var rowsEffect = SqlConnection.QueryFirstOrDefault<int>(
+                        sqlQuery,
+                        param: DynamicParams,
+                        commandType: CommandType.StoredProcedure
+                    );
+
+                    return rowsEffect;
+                }
             }
         }
 
@@ -302,7 +335,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// <returns>
         /// entityIds
         /// </returns>
-        public List<int> DeleteMultiByIds(List<int> entityIds)
+        public List<int> DeleteMultiByIds(List<int> entityIds, MySqlTransaction? transaction)
         {
             // Create dynamic parameters & Create sqlQuery
             DynamicParams = new DynamicParameters();
@@ -318,12 +351,30 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
                 delimiter = ", ";
             }
 
-            string sqlQuery = $"DELETE FROM {_entityName} WHERE {_entityName}ID IN ({deleteQuery});";
+            string sqlQuery;
+
+            if (_entityName == "FoodFavorService")
+            {
+                sqlQuery = $"DELETE FROM {_entityName} WHERE FavorServiceID IN ({deleteQuery});";
+            } 
+            else
+            {
+                sqlQuery = $"DELETE FROM {_entityName} WHERE {_entityName}ID IN ({deleteQuery});";
+            }
 
             // Execute Query
-            using (SqlConnection = ConnectDatabase())
+            if (transaction != null)
             {
-                SqlConnection.Execute(sqlQuery, param: DynamicParams);
+                var sqlConnection = transaction.Connection;
+
+                var rowsEffect = sqlConnection.Execute(sqlQuery, param: DynamicParams, transaction: transaction);
+            } 
+            else
+            {
+                using (SqlConnection = ConnectDatabase())
+                {
+                    var rowsEffect = SqlConnection.Execute(sqlQuery, param: DynamicParams);
+                }
             }
 
             return entityIds;
@@ -509,31 +560,31 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// <returns>
         /// New ID
         /// </returns>
-        public int InsertForTransaction(T entity, MySqlConnection sqlConnection, MySqlTransaction transaction)
-        {
-            // Create dynamic parameters
-            DynamicParams = new DynamicParameters();
+        //public int InsertForTransaction(T entity, MySqlConnection sqlConnection, MySqlTransaction transaction)
+        //{
+        //    // Create dynamic parameters
+        //    DynamicParams = new DynamicParameters();
 
-            var properties = entity?.GetType().GetProperties();
+        //    var properties = entity?.GetType().GetProperties();
 
-            if (properties != null)
-            {
-                AddEntityToDynamicParams(entity, properties, DynamicParams);
-            }
-            else
-            {
-                return 0;
-            }
+        //    if (properties != null)
+        //    {
+        //        AddEntityToDynamicParams(entity, properties, DynamicParams);
+        //    }
+        //    else
+        //    {
+        //        return 0;
+        //    }
 
-            var newId = sqlConnection.QueryFirstOrDefault<int>(
-                $"Proc_Create{_entityName}",
-                param: DynamicParams,
-                transaction: transaction,
-                commandType: CommandType.StoredProcedure
-            );
+        //    var newId = sqlConnection.QueryFirstOrDefault<int>(
+        //        $"Proc_Create{_entityName}",
+        //        param: DynamicParams,
+        //        transaction: transaction,
+        //        commandType: CommandType.StoredProcedure
+        //    );
 
-            return newId;
-        }
+        //    return newId;
+        //}
 
         /// <summary>
         /// @author: VQPhong (19/08/2022)
@@ -546,33 +597,33 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// <returns>
         /// A number of rows which is affected
         /// </returns>
-        public int UpdateByIdForTransaction(T entity, int entityId, MySqlConnection sqlConnection, MySqlTransaction transaction)
-        {
-            // Create dynamic parameters
-            DynamicParams = new DynamicParameters();
-            DynamicParams.Add($"@${_entityName}ID", entityId);
+        //public int UpdateByIdForTransaction(T entity, int entityId, MySqlConnection sqlConnection, MySqlTransaction transaction)
+        //{
+        //    // Create dynamic parameters
+        //    DynamicParams = new DynamicParameters();
+        //    DynamicParams.Add($"@${_entityName}ID", entityId);
 
-            var properties = entity?.GetType().GetProperties();
+        //    var properties = entity?.GetType().GetProperties();
 
-            if (properties != null)
-            {
-                AddEntityToDynamicParams(entity, properties, DynamicParams);
-            }
-            else
-            {
-                return 0;
-            }
+        //    if (properties != null)
+        //    {
+        //        AddEntityToDynamicParams(entity, properties, DynamicParams);
+        //    }
+        //    else
+        //    {
+        //        return 0;
+        //    }
 
-            // Query data in database
-            var rowsEffect = sqlConnection.Execute(
-                $"Proc_Update{_entityName}",
-                param: DynamicParams,
-                transaction: transaction,
-                commandType: CommandType.StoredProcedure
-            );
+        //    // Query data in database
+        //    var rowsEffect = sqlConnection.Execute(
+        //        $"Proc_Update{_entityName}",
+        //        param: DynamicParams,
+        //        transaction: transaction,
+        //        commandType: CommandType.StoredProcedure
+        //    );
 
-            return rowsEffect;
-        }
+        //    return rowsEffect;
+        //}
 
         /// <summary>
         /// @author: VQPhong (19/08/2022)
@@ -584,29 +635,29 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// <returns>
         /// entityIds
         /// </returns>
-        public List<int> DeleteMultiByIdsForTransaction(List<int> entityIds, MySqlConnection sqlConnection, MySqlTransaction transaction)
-        {
-            // Create dynamic parameters & Create sqlQuery
-            DynamicParams = new DynamicParameters();
+        //public List<int> DeleteMultiByIdsForTransaction(List<int> entityIds, MySqlConnection sqlConnection, MySqlTransaction transaction)
+        //{
+        //    // Create dynamic parameters & Create sqlQuery
+        //    DynamicParams = new DynamicParameters();
 
-            StringBuilder deleteQuery = new();
-            string delimiter = "";
+        //    StringBuilder deleteQuery = new();
+        //    string delimiter = "";
 
-            for (int i = 0; i < entityIds.Count; i++)
-            {
-                DynamicParams.Add($"@ID{i}", entityIds[i]);
+        //    for (int i = 0; i < entityIds.Count; i++)
+        //    {
+        //        DynamicParams.Add($"@ID{i}", entityIds[i]);
 
-                deleteQuery.Append($"{delimiter}@ID{i}");
-                delimiter = ", ";
-            }
+        //        deleteQuery.Append($"{delimiter}@ID{i}");
+        //        delimiter = ", ";
+        //    }
 
-            string sqlQuery = $"DELETE FROM {_entityName} WHERE {_entityName}ID IN ({deleteQuery});";
+        //    string sqlQuery = $"DELETE FROM {_entityName} WHERE {_entityName}ID IN ({deleteQuery});";
 
-            // Execute Query
-            sqlConnection.Execute(sqlQuery, param: DynamicParams, transaction: transaction);
+        //    // Execute Query
+        //    sqlConnection.Execute(sqlQuery, param: DynamicParams, transaction: transaction);
 
-            return entityIds;
-        }
+        //    return entityIds;
+        //}
 
         #endregion
     }

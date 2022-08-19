@@ -168,7 +168,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             try
             {
                 // Insert Food
-                int newFoodId = _foodRepository.InsertForTransaction(food, sqlConnection, transaction);
+                int newFoodId = _foodRepository.Insert(food, transaction);
 
                 // Handling favorite service and intermediate records
                 if (finalFavorService.Any())
@@ -183,7 +183,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
                         if (fs.FavorServiceID <= 0 || fs.FavorServiceID == null)
                         {
                             // Create new FavorService
-                            newFavorServiceId = _favorServiceRepository.InsertForTransaction(fs, sqlConnection, transaction);
+                            newFavorServiceId = _favorServiceRepository.Insert(fs, transaction);
 
                             // Add newFavorServiceId to addFavorServiceIDs
                             addFavorServiceIDs.Add(newFavorServiceId);
@@ -196,7 +196,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
                     }
 
                     // Create (intermediate) FoodFavorService record
-                    var rowsEffectIntermediate = _foodFavorServiceRepository.InsertMultiFFSs(newFoodId, addFavorServiceIDs, sqlConnection, transaction);
+                    _foodFavorServiceRepository.InsertMultiFFSs(newFoodId, addFavorServiceIDs, transaction);
                 }
 
                 // Everything is Okay
@@ -284,7 +284,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
             try
             {
                 // Update Food
-                int rowFoodEffect = _foodRepository.UpdateByIdForTransaction(food, foodId, sqlConnection, transaction);
+                _foodRepository.UpdateById(food, foodId, transaction);
 
                 // Handling favorite service and intermediate records
                 // 1. Create some new FavorService (if necessary) and create (intermediate) FoodFavorService records
@@ -300,7 +300,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
                         if (fs.FavorServiceID <= 0 || fs.FavorServiceID == null)
                         {
                             // Create new FavorService
-                            newFavorServiceId = _favorServiceRepository.InsertForTransaction(fs, sqlConnection, transaction);
+                            newFavorServiceId = _favorServiceRepository.Insert(fs, transaction);
 
                             // Add newFavorServiceId to addFavorServiceIDs
                             addFavorServiceIDs.Add(newFavorServiceId);
@@ -313,13 +313,13 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
                     }
 
                     // Create (intermediate) FoodFavorService record
-                    var rowsEffectIntermediate = _foodFavorServiceRepository.InsertMultiFFSs(foodId, addFavorServiceIDs, sqlConnection, transaction);
+                    _foodFavorServiceRepository.InsertMultiFFSs(foodId, addFavorServiceIDs, transaction);
                 }
 
                 // 2. Remove some (intermediate) FoodFavorService records
                 if (delFavorServiceIds.Any())
                 {
-                    List<int> resDelIds = _foodFavorServiceRepository.DeleteMultiByIdsForTransaction(delFavorServiceIds, sqlConnection, transaction);
+                    _foodFavorServiceRepository.DeleteMultiByIds(delFavorServiceIds, transaction);
                 }
 
                 // Everything is Okay
@@ -328,7 +328,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
 
                 return new ControllerResponseData
                 {
-                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.Created,
+                    customStatusCode = (int?)Core.Enum.CustomizeStatusCode.Updated,
                     responseData = Core.Enum.InsertUpdateResult.Success,
                 };
             }

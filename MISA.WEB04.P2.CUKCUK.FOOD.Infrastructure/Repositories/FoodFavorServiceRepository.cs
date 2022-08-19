@@ -31,7 +31,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// <returns>
         /// Number of rows affected
         /// </returns>
-        public int InsertMultiFFSs(int foodId, List<int> favorServiceIds, MySqlConnection sqlConnection, MySqlTransaction transaction)
+        public int InsertMultiFFSs(int foodId, List<int> favorServiceIds, MySqlTransaction transaction)
         {
             // Create Dynamic Parameter & insert query
             DynamicParams = new DynamicParameters();
@@ -52,7 +52,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
             var sqlQuery = $"INSERT INTO FoodFavorService(FoodID, FavorServiceID) VALUES {valueInsertQuery};";
 
             // Execute query
-
+            var sqlConnection = transaction.Connection;
             var rowsEffect = sqlConnection.Execute(sqlQuery, param: DynamicParams, transaction: transaction);
             return rowsEffect;
         }

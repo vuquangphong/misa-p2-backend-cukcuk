@@ -66,7 +66,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// New ID
         /// </returns>
-        public int Insert(T entity);
+        public int Insert(T entity, MySqlTransaction? transaction);
 
         /// <summary>
         /// @author: VQPhong (01/08/2022)
@@ -75,9 +75,9 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <param name="entity">Entity needs to be updated</param>
         /// <param name="entityId">The ID of the entity</param>
         /// <returns>
-        /// A number of rows which is affected
+        /// entityId
         /// </returns>
-        public int UpdateById(T entity, int entityId);
+        public int UpdateById(T entity, int entityId, MySqlTransaction? transaction);
 
         /// <summary>
         /// @author: VQPhong (14/07/2022)
@@ -97,7 +97,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// entityIds
         /// </returns>
-        public List<int> DeleteMultiByIds(List<int> entityIds);
+        public List<int> DeleteMultiByIds(List<int> entityIds, MySqlTransaction? transaction);
 
         /// <summary>
         /// @author: VQPhong (01/08/2022)
@@ -143,7 +143,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// New ID
         /// </returns>
-        public int InsertForTransaction(T entity, MySqlConnection sqlConnection, MySqlTransaction transaction);
+        //public int InsertForTransaction(T entity, MySqlConnection sqlConnection, MySqlTransaction transaction);
 
         /// <summary>
         /// @author: VQPhong (19/08/2022)
@@ -156,7 +156,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// A number of rows which is affected
         /// </returns>
-        public int UpdateByIdForTransaction(T entity, int entityId, MySqlConnection sqlConnection, MySqlTransaction transaction);
+        //public int UpdateByIdForTransaction(T entity, int entityId, MySqlConnection sqlConnection, MySqlTransaction transaction);
 
         /// <summary>
         /// @author: VQPhong (19/08/2022)
@@ -168,6 +168,6 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// entityIds
         /// </returns>
-        public List<int> DeleteMultiByIdsForTransaction(List<int> entityIds, MySqlConnection sqlConnection, MySqlTransaction transaction);
+        //public List<int> DeleteMultiByIdsForTransaction(List<int> entityIds, MySqlConnection sqlConnection, MySqlTransaction transaction);
     }
 }
