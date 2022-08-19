@@ -97,7 +97,7 @@
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
         }
       },
-      "MySqlConnector/2.1.11": {
+      "MySqlConnector/2.1.12": {
         "type": "package",
         "compile": {
           "lib/net6.0/MySqlConnector.dll": {}
@@ -193,6 +193,10 @@
       "MISA.WEB04.P2.CUKCUK.FOOD.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Dapper": "2.0.123",
+          "MySqlConnector": "2.1.12"
+        },
         "compile": {
           "bin/placeholder/MISA.WEB04.P2.CUKCUK.FOOD.Core.dll": {}
         },
@@ -207,7 +211,7 @@
           "Dapper": "2.0.123",
           "MISA.WEB04.P2.CUKCUK.FOOD.Core": "1.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
-          "MySqlConnector": "2.1.11"
+          "MySqlConnector": "2.1.12"
         },
         "compile": {
           "bin/placeholder/MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.dll": {}
@@ -632,10 +636,10 @@
         "microsoft.openapi.nuspec"
       ]
     },
-    "MySqlConnector/2.1.11": {
-      "sha512": "JTWIkFDz0uQhXKLjd53t2zeZn84aGuxCzRRe5NYOInuThRa6OrtdN/iEob2+GYAJeH2f4m42wdmunjT5Y02lIA==",
+    "MySqlConnector/2.1.12": {
+      "sha512": "XIYN95wlj6oIuWsIPrGmgpiD3mt3Zsv/zOz8gsbrgb8pW/msmZPFmmX2t7nDL5nx1r/fWfUSA1jmiQAmiykGAQ==",
       "type": "package",
-      "path": "mysqlconnector/2.1.11",
+      "path": "mysqlconnector/2.1.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -657,7 +661,7 @@
         "lib/netstandard2.1/MySqlConnector.dll",
         "lib/netstandard2.1/MySqlConnector.xml",
         "logo.png",
-        "mysqlconnector.2.1.11.nupkg.sha512",
+        "mysqlconnector.2.1.12.nupkg.sha512",
         "mysqlconnector.nuspec"
       ]
     },

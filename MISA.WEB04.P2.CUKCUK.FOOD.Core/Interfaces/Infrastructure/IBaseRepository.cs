@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,15 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
     /// <typeparam name="T">T as a type of model</typeparam>
     public interface IBaseRepository<T>
     {
+        /// <summary>
+        /// @desc: Create MySQL Connection from Connection string
+        /// @author: VQPhong (14/07/2022)
+        /// </summary>
+        /// <returns>
+        /// The MySqlConnection
+        /// </returns>
+        public MySqlConnection ConnectDatabase();
+
         /// <summary>
         /// @author: VQPhong (14/07/2022)
         /// @desc: Getting all the Entities <T> from Database
@@ -54,7 +64,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// </summary>
         /// <param name="entity">Entity needs to be inserted</param>
         /// <returns>
-        /// A number of rows which is affected
+        /// New ID
         /// </returns>
         public int Insert(T entity);
 
@@ -75,9 +85,19 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// </summary>
         /// <param name="entityId">The ID of the entity</param>
         /// <returns>
-        /// A number of rows which is affected
+        /// entityID
         /// </returns>
         public int DeleteById(int entityId);
+
+        /// <summary>
+        /// @author: VQPhong (18/08/2022)
+        /// @desc: Removing multi entity by a list of IDs
+        /// </summary>
+        /// <param name="entityIds">The list of IDs</param>
+        /// <returns>
+        /// entityIds
+        /// </returns>
+        public List<int> DeleteMultiByIds(List<int> entityIds);
 
         /// <summary>
         /// @author: VQPhong (01/08/2022)
@@ -112,5 +132,42 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// False --> Not Duplicated
         /// </returns>
         public bool CheckDuplicatedCode(string code);
+
+        /// <summary>
+        /// @author: VQPhong (19/08/2022)
+        /// @desc: Insert method for transaction
+        /// </summary>
+        /// <param name="entity">Entity model need to be inserted</param>
+        /// <param name="sqlConnection"></param>
+        /// <param name="transaction"></param>
+        /// <returns>
+        /// New ID
+        /// </returns>
+        public int InsertForTransaction(T entity, MySqlConnection sqlConnection, MySqlTransaction transaction);
+
+        /// <summary>
+        /// @author: VQPhong (19/08/2022)
+        /// @desc: UpdateById method for transaction
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="entityId"></param>
+        /// <param name="sqlConnection"></param>
+        /// <param name="transaction"></param>
+        /// <returns>
+        /// A number of rows which is affected
+        /// </returns>
+        public int UpdateByIdForTransaction(T entity, int entityId, MySqlConnection sqlConnection, MySqlTransaction transaction);
+
+        /// <summary>
+        /// @author: VQPhong (19/08/2022)
+        /// @desc: DeleteMultiByIds method for transaction
+        /// </summary>
+        /// <param name="entityIds"></param>
+        /// <param name="sqlConnection"></param>
+        /// <param name="transaction"></param>
+        /// <returns>
+        /// entityIds
+        /// </returns>
+        public List<int> DeleteMultiByIdsForTransaction(List<int> entityIds, MySqlConnection sqlConnection, MySqlTransaction transaction);
     }
 }

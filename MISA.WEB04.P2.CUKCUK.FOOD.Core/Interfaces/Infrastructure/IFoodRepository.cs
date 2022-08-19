@@ -1,5 +1,6 @@
 ﻿using MISA.WEB04.P2.CUKCUK.FOOD.Core.Entities;
 using MISA.WEB04.P2.CUKCUK.FOOD.Core.OtherModels;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// A model of ControllerResponseData
         /// </returns>
-        public ControllerResponseData InsertFullFood(Food food, List<FavorService> favorServices);
+        //public ControllerResponseData InsertFullFood(Food food, List<FavorService> favorServices);
 
         /// <summary>
         /// @author: VQPhong (01/08/2022)
@@ -36,6 +37,6 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure
         /// <returns>
         /// A model of ControllerResponseData
         /// </returns>
-        public ControllerResponseData UpdateFullFoodById(Food food, int foodId, List<FavorService> favorServices, List<int> delFavorServiceIds);
+        //public ControllerResponseData UpdateFullFoodById(Food food, int foodId, List<FavorService> favorServices, List<int> delFavorServiceIds);
     }
 }

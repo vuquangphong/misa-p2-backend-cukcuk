@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XSg298qsl0nOd4EEptuXpJp8lUJpmpBTW/ymmCrsB3I+rLxDK9MxhT8rtZLSHJBfBfKRGD5l5AN0CuUoP0GOKw==",
+  "dgSpecHash": "4w/nJ91RGDpq4ck5VUohDCL8ZjgXiasgh2hDRO/ofKevdHRRAV6s/DI/Z1nyW0lWoVR4OhbT3nC5VMXaheGxPA==",
   "success": true,
   "projectFilePath": "C:\\Users\\thapq\\MISA-TRAINING-GĐ2\\GPBL\\backend\\MISA.WEB04.P2.CUKCUK.FOOD\\MISA.WEB04.P2.CUKCUK.FOOD.Api\\MISA.WEB04.P2.CUKCUK.FOOD.Api.csproj",
   "expectedPackageFiles": [
@@ -12,7 +12,7 @@
     "C:\\Users\\thapq\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\thapq\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\thapq\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
-    "C:\\Users\\thapq\\.nuget\\packages\\mysqlconnector\\2.1.11\\mysqlconnector.2.1.11.nupkg.sha512",
+    "C:\\Users\\thapq\\.nuget\\packages\\mysqlconnector\\2.1.12\\mysqlconnector.2.1.12.nupkg.sha512",
     "C:\\Users\\thapq\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\thapq\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\thapq\\.nuget\\packages\\swashbuckle.aspnetcore\\6.3.2\\swashbuckle.aspnetcore.6.3.2.nupkg.sha512",

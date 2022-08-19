@@ -49,7 +49,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// <returns>
         /// The MySqlConnection
         /// </returns>
-        protected MySqlConnection ConnectDatabase()
+        public MySqlConnection ConnectDatabase()
         {
             // Initital Connection
             var sqlConnection = new MySqlConnection(_connectionString);
@@ -191,13 +191,12 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// </summary>
         /// <param name="entity">The ID of the entity</param>
         /// <returns>
-        /// Number or rows that are affected
+        /// NewID
         /// </returns>
         public int Insert(T entity)
         {
             // Create dynamic parameters
             DynamicParams = new DynamicParameters();
-            DynamicParams.Add("@$NewID", direction: ParameterDirection.Output, dbType: DbType.Int32);
 
             var properties = entity?.GetType().GetProperties();
 
@@ -214,13 +213,13 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
 
             using (SqlConnection = ConnectDatabase())
             {
-                var rowsEffect = SqlConnection.Execute(
+                var newId = SqlConnection.QueryFirstOrDefault<int>(
                     sqlQuery,
                     param: DynamicParams,
                     commandType: CommandType.StoredProcedure
                 );
 
-                return rowsEffect;
+                return newId;
             }
         }
 
@@ -271,7 +270,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
         /// </summary>
         /// <param name="entityId">The ID of the entity</param>
         /// <returns>
-        /// Number of rows that are affected
+        /// entityIds
         /// </returns>
         public int DeleteById(int entityId)
         {
@@ -289,8 +288,45 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
                     commandType: CommandType.StoredProcedure
                 );
 
-                return rowsEffect;
+                //return rowsEffect;
+                return entityId;
             }
+        }
+
+        /// <summary>
+        /// @author: VQPhong (18/08/2022)
+        /// @desc: Removing multi entity by a list of IDs
+        /// </summary>
+        /// <param name="entityIds">The list of IDs</param>
+        /// <param name="transaction"></param>
+        /// <returns>
+        /// entityIds
+        /// </returns>
+        public List<int> DeleteMultiByIds(List<int> entityIds)
+        {
+            // Create dynamic parameters & Create sqlQuery
+            DynamicParams = new DynamicParameters();
+
+            StringBuilder deleteQuery = new();
+            string delimiter = "";
+
+            for (int i = 0; i < entityIds.Count; i++)
+            {
+                DynamicParams.Add($"@ID{i}", entityIds[i]);
+
+                deleteQuery.Append($"{delimiter}@ID{i}");
+                delimiter = ", ";
+            }
+
+            string sqlQuery = $"DELETE FROM {_entityName} WHERE {_entityName}ID IN ({deleteQuery});";
+
+            // Execute Query
+            using (SqlConnection = ConnectDatabase())
+            {
+                SqlConnection.Execute(sqlQuery, param: DynamicParams);
+            }
+
+            return entityIds;
         }
 
         /// <summary>
@@ -453,7 +489,7 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
             var sqlQuery = $"SELECT {_entityName}Code FROM {_entityName} WHERE {_entityName}Code = @{_entityName}Code";
 
             // Connect Database
-            using(SqlConnection = ConnectDatabase())
+            using (SqlConnection = ConnectDatabase())
             {
                 var isExist = SqlConnection.QueryFirstOrDefault(sqlQuery, param: DynamicParams);
 
@@ -461,6 +497,115 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories
 
                 return false;
             }
+        }
+
+        /// <summary>
+        /// @author: VQPhong (19/08/2022)
+        /// @desc: Insert method for transaction
+        /// </summary>
+        /// <param name="entity">Entity model need to be inserted</param>
+        /// <param name="sqlConnection"></param>
+        /// <param name="transaction"></param>
+        /// <returns>
+        /// New ID
+        /// </returns>
+        public int InsertForTransaction(T entity, MySqlConnection sqlConnection, MySqlTransaction transaction)
+        {
+            // Create dynamic parameters
+            DynamicParams = new DynamicParameters();
+
+            var properties = entity?.GetType().GetProperties();
+
+            if (properties != null)
+            {
+                AddEntityToDynamicParams(entity, properties, DynamicParams);
+            }
+            else
+            {
+                return 0;
+            }
+
+            var newId = sqlConnection.QueryFirstOrDefault<int>(
+                $"Proc_Create{_entityName}",
+                param: DynamicParams,
+                transaction: transaction,
+                commandType: CommandType.StoredProcedure
+            );
+
+            return newId;
+        }
+
+        /// <summary>
+        /// @author: VQPhong (19/08/2022)
+        /// @desc: UpdateById method for transaction
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="entityId"></param>
+        /// <param name="sqlConnection"></param>
+        /// <param name="transaction"></param>
+        /// <returns>
+        /// A number of rows which is affected
+        /// </returns>
+        public int UpdateByIdForTransaction(T entity, int entityId, MySqlConnection sqlConnection, MySqlTransaction transaction)
+        {
+            // Create dynamic parameters
+            DynamicParams = new DynamicParameters();
+            DynamicParams.Add($"@${_entityName}ID", entityId);
+
+            var properties = entity?.GetType().GetProperties();
+
+            if (properties != null)
+            {
+                AddEntityToDynamicParams(entity, properties, DynamicParams);
+            }
+            else
+            {
+                return 0;
+            }
+
+            // Query data in database
+            var rowsEffect = sqlConnection.Execute(
+                $"Proc_Update{_entityName}",
+                param: DynamicParams,
+                transaction: transaction,
+                commandType: CommandType.StoredProcedure
+            );
+
+            return rowsEffect;
+        }
+
+        /// <summary>
+        /// @author: VQPhong (19/08/2022)
+        /// @desc: DeleteMultiByIds method for transaction
+        /// </summary>
+        /// <param name="entityIds"></param>
+        /// <param name="sqlConnection"></param>
+        /// <param name="transaction"></param>
+        /// <returns>
+        /// entityIds
+        /// </returns>
+        public List<int> DeleteMultiByIdsForTransaction(List<int> entityIds, MySqlConnection sqlConnection, MySqlTransaction transaction)
+        {
+            // Create dynamic parameters & Create sqlQuery
+            DynamicParams = new DynamicParameters();
+
+            StringBuilder deleteQuery = new();
+            string delimiter = "";
+
+            for (int i = 0; i < entityIds.Count; i++)
+            {
+                DynamicParams.Add($"@ID{i}", entityIds[i]);
+
+                deleteQuery.Append($"{delimiter}@ID{i}");
+                delimiter = ", ";
+            }
+
+            string sqlQuery = $"DELETE FROM {_entityName} WHERE {_entityName}ID IN ({deleteQuery});";
+
+            // Execute Query
+            sqlConnection.Execute(sqlQuery, param: DynamicParams, transaction: transaction);
+
+            return entityIds;
         }
 
         #endregion

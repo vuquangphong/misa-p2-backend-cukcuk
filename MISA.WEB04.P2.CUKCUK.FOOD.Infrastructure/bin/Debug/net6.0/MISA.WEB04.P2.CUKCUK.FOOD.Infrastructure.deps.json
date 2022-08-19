@@ -11,7 +11,7 @@
           "Dapper": "2.0.123",
           "MISA.WEB04.P2.CUKCUK.FOOD.Core": "1.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
-          "MySqlConnector": "2.1.11"
+          "MySqlConnector": "2.1.12"
         },
         "runtime": {
           "MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.dll": {}
@@ -47,16 +47,20 @@
           }
         }
       },
-      "MySqlConnector/2.1.11": {
+      "MySqlConnector/2.1.12": {
         "runtime": {
           "lib/net6.0/MySqlConnector.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.1.11.0"
+            "fileVersion": "2.1.12.0"
           }
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "MISA.WEB04.P2.CUKCUK.FOOD.Core/1.0.0": {
+        "dependencies": {
+          "Dapper": "2.0.123",
+          "MySqlConnector": "2.1.12"
+        },
         "runtime": {
           "MISA.WEB04.P2.CUKCUK.FOOD.Core.dll": {}
         }
@@ -90,12 +94,12 @@
       "path": "microsoft.extensions.primitives/6.0.0",
       "hashPath": "microsoft.extensions.primitives.6.0.0.nupkg.sha512"
     },
-    "MySqlConnector/2.1.11": {
+    "MySqlConnector/2.1.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JTWIkFDz0uQhXKLjd53t2zeZn84aGuxCzRRe5NYOInuThRa6OrtdN/iEob2+GYAJeH2f4m42wdmunjT5Y02lIA==",
-      "path": "mysqlconnector/2.1.11",
-      "hashPath": "mysqlconnector.2.1.11.nupkg.sha512"
+      "sha512": "sha512-XIYN95wlj6oIuWsIPrGmgpiD3mt3Zsv/zOz8gsbrgb8pW/msmZPFmmX2t7nDL5nx1r/fWfUSA1jmiQAmiykGAQ==",
+      "path": "mysqlconnector/2.1.12",
+      "hashPath": "mysqlconnector.2.1.12.nupkg.sha512"
     },
     "System.Runtime.CompilerServices.Unsafe/6.0.0": {
       "type": "package",

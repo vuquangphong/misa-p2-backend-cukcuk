@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "GyWzeEAIdfBULTd0RzA19X4hbCmREJ1N+VyHy/joIA28vGrOaR24rbImxu+4JQbi8cxzSWwL4JsIdgSPrUHtQA==",
+  "dgSpecHash": "UQjZ0LfuSqO8MOlboYlh1o8RJYdRvJXH7D00lGMJXINUt7FZuEfuZwGRYiHQvA6/Y/O4Cb1oh0fEThSCBxdZUw==",
   "success": true,
   "projectFilePath": "C:\\Users\\thapq\\MISA-TRAINING-GĐ2\\GPBL\\backend\\MISA.WEB04.P2.CUKCUK.FOOD\\MISA.WEB04.P2.CUKCUK.FOOD.Core\\MISA.WEB04.P2.CUKCUK.FOOD.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\thapq\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\thapq\\.nuget\\packages\\mysqlconnector\\2.1.12\\mysqlconnector.2.1.12.nupkg.sha512"
+  ],
   "logs": []
 }
