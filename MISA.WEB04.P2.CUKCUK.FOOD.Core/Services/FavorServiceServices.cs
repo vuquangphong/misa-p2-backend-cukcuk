@@ -230,11 +230,11 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Services
 
             foreach (var fs in favorServices)
             {
-                var tempFS = allFavorServices.Where(p => p.Content == fs.Content && p.Surcharge == fs.Surcharge).ToList();
+                var tempFS = allFavorServices.FirstOrDefault(p => p.Content == fs.Content && p.Surcharge == fs.Surcharge);
 
-                if (tempFS.Any())
+                if (tempFS != null)
                 {
-                    fs.FavorServiceID = tempFS[0].FavorServiceID;
+                    fs.FavorServiceID = tempFS.FavorServiceID;
                 }
                 else
                 {

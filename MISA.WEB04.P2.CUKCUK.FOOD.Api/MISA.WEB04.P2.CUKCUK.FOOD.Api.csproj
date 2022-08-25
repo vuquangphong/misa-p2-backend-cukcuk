@@ -7,13 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.7" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MISA.WEB04.P2.CUKCUK.FOOD.Core\MISA.WEB04.P2.CUKCUK.FOOD.Core.csproj" />
     <ProjectReference Include="..\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure\MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Upload\" />
   </ItemGroup>
 
 </Project>

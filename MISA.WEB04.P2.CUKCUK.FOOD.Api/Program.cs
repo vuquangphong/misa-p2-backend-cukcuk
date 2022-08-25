@@ -1,6 +1,9 @@
+using Microsoft.Extensions.FileProviders;
 using MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Infrastructure;
 using MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services;
+using MISA.WEB04.P2.CUKCUK.FOOD.Core.Interfaces.Services.FileServices;
 using MISA.WEB04.P2.CUKCUK.FOOD.Core.Services;
+using MISA.WEB04.P2.CUKCUK.FOOD.Core.Services.FileServices;
 using MISA.WEB04.P2.CUKCUK.FOOD.Infrastructure.Repositories;
 using Newtonsoft.Json.Serialization;
 
@@ -12,6 +15,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Static file for display image on browser (22/08/2022)
+StaticFileOptions staticFileOptions = new()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Upload")),
+    RequestPath = "/Upload"
+};
 
 // Dependency Injection (VQPhong - 14/07/2022)
 builder.Services.AddScoped<IFoodRepository, FoodRepository>();
@@ -26,6 +36,7 @@ builder.Services.AddScoped<IFoodPlaceServices, FoodPlaceServices>();
 builder.Services.AddScoped<IFoodUnitServices, FoodUnitServices>();
 builder.Services.AddScoped<IFavorServiceServices, FavorServiceServices>();
 builder.Services.AddScoped<IFoodFavorServiceServices, FoodFavorServiceServices>();
+builder.Services.AddScoped<IFileServices, FileServices>();
 
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped(typeof(IBaseServices<>), typeof(BaseServices<>));
@@ -49,6 +60,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Static file for display image on browser (22/08/2022)
+app.UseStaticFiles(staticFileOptions);
 
 app.UseAuthorization();
 

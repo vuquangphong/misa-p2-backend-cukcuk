@@ -70,6 +70,15 @@ namespace MISA.WEB04.P2.CUKCUK.FOOD.Core.Resourses {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dung lượng ảnh phải nhỏ hơn 5MB.
+        /// </summary>
+        public static string ImageOverSize {
+            get {
+                return ResourceManager.GetString("ImageOverSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sở thích phục vụ không được để trống khi có thu thêm. Vui lòng kiểm tra lại..
         /// </summary>
         public static string NoContentFS {

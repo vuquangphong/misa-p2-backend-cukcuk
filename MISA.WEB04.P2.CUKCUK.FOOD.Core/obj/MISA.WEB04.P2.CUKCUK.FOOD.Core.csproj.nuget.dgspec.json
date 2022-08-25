@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[2.0.123, )"
             },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "MySqlConnector": {
               "target": "Package",
               "version": "[2.1.12, )"
